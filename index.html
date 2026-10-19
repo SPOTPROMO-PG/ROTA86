@@ -609,6 +609,7 @@ button.row:hover{background:#fafbfc;border-color:#d8dce3}
 .ana-resumo>div{background:#f4f5f7;border-radius:12px;padding:10px 8px;text-align:center;display:flex;flex-direction:column;gap:2px}
 .ana-resumo b{font-size:20px;font-weight:800}.ana-resumo b span{font-size:12px;color:var(--mut);font-weight:600}.ana-resumo small{font-size:10.5px;color:var(--mut)}
 .exec-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.hero-top:has(.conta-diaria-bt){flex-wrap:wrap}.conta-diaria-bt{margin-left:auto;flex:0 0 auto;align-self:center;border:1px solid #ffffff45;border-radius:8px;color:#fff;padding:6px 8px;font-size:9px;font-weight:700;letter-spacing:0;min-height:30px;white-space:nowrap}.conta-diaria-opcao{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding:12px 10px;border-bottom:1px solid var(--line-soft);border-radius:8px}.conta-diaria-opcao[aria-pressed=true]{background:#f6f7f9}.conta-diaria-opcao b{display:block;font-size:12px}.conta-diaria-opcao small{display:block;color:var(--mut);font-size:11px;margin-top:3px}
 .star-chip{background:#fff8dc;border-color:#edd574}.star-chip .star-ic{color:#c99700;font-size:16px;line-height:1}
 .star-chip .filter-chip-text .num{font-size:15px;font-weight:800;color:var(--ink)}
 .spi-lista{display:inline-flex;flex-wrap:wrap;gap:4px;vertical-align:middle;margin-left:4px}
@@ -1782,6 +1783,7 @@ function restaurarAcesso(){
 }
 function abrirApp(acesso){
   ACESSO = acesso; _baseCache = null; M._taxaCache = new Map(); M._ctxAnteriorCache = new Map();
+  exContaDiariaSetor = null;
   document.body.classList.remove('auth-locked');
   document.body.classList.add('auth-ok');
   $('barIniciais').textContent = iniciaisNome((acesso.nomes||[])[0] || acesso.setor);
@@ -4948,13 +4950,47 @@ function exDataset(){
   return (RETAILX && RETAILX[ex.periodo]) || [];
 }
 /* o Retail-X vem no escopo da carga; aqui restringimos ao acesso corrente */
+/* Consulta diária adicional autorizada: não troca ACESSO nem baseAcesso(). */
+const EX_CONTAS_DIARIAS = {SCCOORD02:['SCCOORD02','SCCOORD03','SCCOORD06']};
+let exContaDiariaSetor = null;
+function exContaDiariaOpcoes(){
+  if(!ACESSO || ACESSO.perfil!=='Coordenador' || ex.familia!=='visitas' || ex.periodo!=='diario' || ex.dia) return [];
+  const setores=EX_CONTAS_DIARIAS[String(ACESSO.setor||'').trim().toUpperCase()]||[];
+  return setores.map(s=>ACESSOS_MAP.get(norm(s))).filter(a=>a&&a.perfil==='Coordenador');
+}
+function exContaDiariaAtual(){
+  return exContaDiariaOpcoes().find(a=>norm(a.setor)===norm(exContaDiariaSetor))||ACESSO;
+}
+function exContaDiariaDelegada(){
+  return exContaDiariaOpcoes().length>0 && exContaDiariaAtual()!==ACESSO;
+}
+function exContaDiariaCarteira(){
+  if(!exContaDiariaDelegada()) return baseAcesso();
+  const nomes=new Set((exContaDiariaAtual().nomes||[]).map(norm));
+  return STORES.filter(s=>nomes.has(norm(s[4])));
+}
+function exTrocarContaDiaria(setor){
+  const conta=exContaDiariaOpcoes().find(a=>norm(a.setor)===norm(setor));
+  if(!conta) return false;
+  exContaDiariaSetor=conta.setor; ex.caminho=[];
+  fecharSheet(); renderOperacao(); return true;
+}
+function exContaDiariaBotao(){
+  if(!exContaDiariaOpcoes().length) return '';
+  return `<button type="button" class="conta-diaria-bt" data-act="conta-diaria" aria-label="Selecionar conta das visitas diárias">${esc(exContaDiariaAtual().setor)} ▾</button>`;
+}
+function abrirContasDiarias(){
+  const contas=exContaDiariaOpcoes(); if(!contas.length) return;
+  abrirSheet('Conta das visitas diárias',`<p class="lead">Selecione a equipe que deseja consultar.</p>${contas.map(a=>`<button type="button" class="conta-diaria-opcao" data-act="conta-diaria-selecionar" data-conta="${esc(a.setor)}" aria-pressed="${a===exContaDiariaAtual()}"><span><b>${esc(a.setor)}${a===ACESSO?' · Minha conta':''}</b><small>${esc((a.nomes||[])[0]||'')}</small></span><span aria-hidden="true">${a===exContaDiariaAtual()?'✓':'›'}</span></button>`).join('')}`);
+}
 function exLinhas(){
   const rows = exDataset();
   if(!Array.isArray(rows)) return [];
   /* lojas DEMO-* são do usuário de teste: não entram nos números reais da operação */
   if(!ACESSO || ACESSO.perfil==='Operação') return rows.filter(r => !/^DEMO-/i.test(String(r[RX.ID]||'')));
-  const nomes = new Set(baseAcesso().map(s => norm(s[0])));
-  const ids   = new Set(baseAcesso().map(s => String(s[14]||'').trim()).filter(Boolean));
+  const carteira = exContaDiariaCarteira();
+  const nomes = new Set(carteira.map(s => norm(s[0])));
+  const ids   = new Set(carteira.map(s => String(s[14]||'').trim()).filter(Boolean));
   return rows.filter(r => ids.has(String(r[RX.ID]||'').trim()) || nomes.has(norm(r[RX.LOJA])));
 }
 /* plano = visitas previstas que foram feitas (por linha loja × promotor, nunca acima do previsto);
@@ -5083,8 +5119,8 @@ function exLojasDoDiario(rows){
   })).sort((a,b)=>Number(a.fez)-Number(b.fez)||(a.pct==null?101:a.pct)-(b.pct==null?101:b.pct)||a.nome.localeCompare(b.nome,'pt-BR'));
 }
 function renderLojasDoDiario(rows){
-  const lojas=exLojasDoDiario(rows);
-  return `<div class="sec-head"><div><h2>Lojas do dia</h2><p class="hier-quem">Visitas previstas e realizadas nas lojas da sua carteira.</p></div><span class="side">${fmt0(lojas.length)} ${plural(lojas.length,'loja')}</span></div>
+  const lojas=exLojasDoDiario(rows).map(g=>exContaDiariaDelegada()?Object.assign({},g,{iLoja:null}):g);
+  return `<div class="sec-head"><div><h2>Lojas do dia</h2><p class="hier-quem">${exContaDiariaDelegada()?`Visitas previstas e realizadas da conta ${esc(exContaDiariaAtual().setor)}.`:'Visitas previstas e realizadas nas lojas da sua carteira.'}</p></div><span class="side">${fmt0(lojas.length)} ${plural(lojas.length,'loja')}</span></div>
     <div class="hier-lista">${lojas.map(g=>`<div class="execution-row hier-loja"${g.iLoja!=null?` data-act="loja" data-i="${g.iLoja}" data-origem="operacao" role="link" tabindex="0" aria-label="${esc(g.nome)} — ver loja" style="cursor:pointer"`:''}>
       <div><div class="name">${esc(g.nome)}</div><div class="meta">${g.fora?`${fmt0(g.extra)} ${plural(g.extra,'visita','visitas')} fora do roteiro`:`<b class="pct-big" style="color:${exCor(g.pct||0)}">${pct(g.pct)}</b>`}${g.setores.length?` <span class="spi-lista">${g.setores.map(x=>`<span class="spi-chip${x.fez?' ok':''}">${esc(x.setor)}</span>`).join('')}</span>`:''}${g.extra&&!g.fora?` · ${fmt0(g.extra)} além do previsto`:''}</div></div>
       <div class="right"><span class="pill ${g.fora?'':g.fez?'ok':'crit'}">${g.fora?'Fora do roteiro':g.fez?'Fez':g.real>0?'Parcial':'Não fez'}</span>
@@ -5292,7 +5328,7 @@ function exportarFotoExecucao(){
   const linhas=pendentes.slice(0,80), W=1080, rowH=50, H=150+linhas.length*rowH;
   const cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');
   g.fillStyle='#fff';g.fillRect(0,0,W,H);g.fillStyle='#171920';g.fillRect(0,0,W,105);g.fillStyle='#e3001b';g.fillRect(0,105,W,5);
-  g.fillStyle='#fff';g.font='800 28px Montserrat,Arial';g.fillText('ROTA 86 · Execução pendente',34,45);g.fillStyle='#c8ced8';g.font='500 15px Montserrat,Arial';g.fillText(`${ACESSO.setor} · ${ex.familia==='leitura'?'Leituras':ex.periodo==='diario'?'Visitas do dia':'Visitas do mês'} · ${linhas.length} lojas`,34,76);
+  g.fillStyle='#fff';g.font='800 28px Montserrat,Arial';g.fillText('ROTA 86 · Execução pendente',34,45);g.fillStyle='#c8ced8';g.font='500 15px Montserrat,Arial';g.fillText(`${exContaDiariaDelegada()?exContaDiariaAtual().setor:ACESSO.setor} · ${ex.familia==='leitura'?'Leituras':ex.periodo==='diario'?'Visitas do dia':'Visitas do mês'} · ${linhas.length} lojas`,34,76);
   linhas.forEach((x,i)=>{const y=140+i*rowH;g.fillStyle=i%2?'#f6f7f9':'#fff';g.fillRect(24,y-25,W-48,rowH);g.fillStyle='#171920';g.font='700 15px Montserrat,Arial';g.fillText(x.nome.slice(0,64),38,y);g.fillStyle='#66707e';g.font='500 12px Montserrat,Arial';g.fillText(`${fmt0(x.real)} de ${fmt0(x.obj)} · ${x.pct==null?'sem objetivo':pct(x.pct)}`,760,y);});
   const nome=`rota86_execucao_${String(ACESSO.setor).replace(/\W+/g,'_')}_${new Date().toISOString().slice(0,10)}.png`;
   cv.toBlob(blob=>{
@@ -5471,7 +5507,7 @@ function renderOperacaoPadrao(){
   }
   const rows = exLinhas();
   if(!rows.length){
-    el.innerHTML = `${seletorOperacao()}
+    el.innerHTML = `${seletorOperacao()}${exContaDiariaOpcoes().length?`<div class="hero"><div class="hero-top lbl-info">VISITAS · DIA ${exContaDiariaBotao()}</div></div>`:''}
       <div class="card">
         <div class="empty"><b>Sem dados de ${esc(ex.familia==='leitura'?'leitura':'visitas')} nesta carga</b>
         <span>O Retail-X não trouxe linhas no escopo do seu acesso para esta seleção.</span></div>
@@ -5501,7 +5537,7 @@ function renderOperacaoPadrao(){
 
   el.innerHTML = `
     <div class="hero">
-      <div class="hero-top lbl-info"><span class="live"></span>${esc(ex.familia==='leitura'?'LEITURAS':'VISITAS')} · ${esc(recorte)}${nav&&nav.no?` · ${esc(nav.no.chave)}`:''} ${btInfo(visitas?'visitasExec':'leiturasExec')}</div>
+      <div class="hero-top lbl-info"><span class="live"></span>${esc(ex.familia==='leitura'?'LEITURAS':'VISITAS')} · ${esc(recorte)}${nav&&nav.no?` · ${esc(nav.no.chave)}`:''} ${btInfo(visitas?'visitasExec':'leiturasExec')} ${exContaDiariaBotao()}</div>
       ${rotuloAt}
       <div class="overview-body">
         <div class="overview-left">
@@ -5526,7 +5562,7 @@ function seletorOperacao(){
   const perLbl = ex.familia==='visitas' ? (EX_PERIODOS.find(([v])=>v===ex.periodo)||[])[1] : '';
   const resumo = [famLbl, perLbl].filter(Boolean).join(', ');
   const nStar = PERM.verStar() ? baseAcesso().filter(s => starStatusLoja(s)).length : 0;
-  const botStar = PERM.verStar() ? `<button type="button" class="filter-chip star-chip" data-act="ir-star" data-star="all" aria-label="Ver ${nStar} lojas STAR">
+  const botStar = PERM.verStar() && !exContaDiariaDelegada() ? `<button type="button" class="filter-chip star-chip" data-act="ir-star" data-star="all" aria-label="Ver ${nStar} lojas STAR">
     <span class="star-ic" aria-hidden="true">★</span><span class="filter-chip-text"><b>Loja STAR</b><span class="num">${fmt0(nStar)}</span></span></button>` : '';
   return `<div class="exec-bar"><button type="button" class="filter-chip" data-act="abrir-filtro-operacao">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M7 12h10M10 19h4"/></svg>
@@ -6122,6 +6158,8 @@ document.addEventListener('click', ev => {
       case 'fech-mes': abrirAnaliseFechamento(Number(el.dataset.idx)); return;
       case 'ir-operacao': irPara('operacao'); return;
       case 'abrir-filtro-operacao': abrirFiltroOperacao(); return;
+      case 'conta-diaria': abrirContasDiarias(); return;
+      case 'conta-diaria-selecionar': exTrocarContaDiaria(el.dataset.conta); return;
       case 'ir-star':
         if(!$('sheet').hidden) fecharSheet({imediato:true,restaurarFoco:false});
         limparFiltrosCatalogo(); cat.star=el.dataset.star||'all'; irPara('lojas'); return;
