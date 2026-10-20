@@ -4951,7 +4951,7 @@ function exDataset(){
 }
 /* o Retail-X vem no escopo da carga; aqui restringimos ao acesso corrente */
 /* Consulta diária adicional autorizada: não troca ACESSO nem baseAcesso(). */
-const EX_CONTAS_DIARIAS = {SCCOORD02:['SCCOORD02','SCCOORD03','SCCOORD06']};
+const EX_CONTAS_DIARIAS = {SCCOORD02:['SCCOORD02','SCCOORD03','SCCOORD08']};
 let exContaDiariaSetor = null;
 function exContaDiariaOpcoes(){
   if(!ACESSO || ACESSO.perfil!=='Coordenador' || ex.familia!=='visitas' || ex.periodo!=='diario' || ex.dia) return [];
