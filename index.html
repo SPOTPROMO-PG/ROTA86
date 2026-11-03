@@ -1102,6 +1102,168 @@ button.row:hover{background:#fafbfc;border-color:#d8dce3}
 .mj-nota{font-size:11.5px;color:var(--mut);margin-top:10px}
 .mis-sts{font-size:13px;font-weight:800;color:var(--ink);margin-top:2px}
 .mis-rc{font-size:12.5px;color:var(--body);line-height:1.4}
+
+/* ===== módulo AJC (app-web/ajc) ===== */
+/* ajc.css — Tela de VT por trecho, v2 "calma" (prefixo .ajc-, escopado sob .ajc).
+   Regra: papel/tinta. Vermelho = falta/erro. Verde = ✓. Sem fundos, pílulas ou chips coloridos. */
+.ajc{--ajc-mut:#6b655b;--ajc-borda:#8f8779;font-family:var(--sans,'Montserrat',system-ui,sans-serif);font-size:14px;line-height:1.4;color:var(--body,#57534e);position:relative;-webkit-text-size-adjust:100%;overflow-wrap:anywhere}
+.ajc *,.ajc *::before,.ajc *::after{box-sizing:border-box}
+.ajc button{font-family:inherit;font-size:14px;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ajc button:focus-visible,.ajc .ajc-input:focus-visible,.ajc .ajc-busca:focus-visible{outline:3px solid var(--info,#1d3a5e);outline-offset:2px}
+.ajc .ajc-view{display:none;padding:var(--pad,16px);padding-bottom:calc(var(--nav-total,92px) + 130px + env(safe-area-inset-bottom,0px))}
+.ajc .ajc-view.ajc-ativa{display:block}
+.ajc .ajc-view[data-view="setor"]{padding-bottom:calc(var(--nav-total,92px) + 40px + env(safe-area-inset-bottom,0px))}
+.ajc .ajc-vazio{margin:24px 0;text-align:center;color:var(--ajc-mut)}
+
+/* Atualizar (discreto) */
+.ajc .ajc-atualizar{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1.5px solid var(--line,#ddd5c4);border-radius:var(--r-sm,13px);background:transparent;color:var(--ink,#1c1917);font-weight:700}
+.ajc .ajc-hero .ajc-atualizar{border:0;font-size:20px;margin:-8px -10px -8px 0;color:var(--ajc-mut)}
+
+/* Cabeçalho compacto */
+.ajc .ajc-hero{padding:0 0 12px;margin-bottom:8px;border-bottom:1px solid var(--line-soft,#efeae2)}
+.ajc .ajc-hero-topo{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ajc .ajc-hero-label{font-size:16px;font-weight:800;color:var(--ink,#1c1917);min-width:0}
+.ajc .ajc-hero-prazo{font-size:13px;font-weight:600;color:var(--body,#57534e);margin-top:2px}
+.ajc .ajc-hero-prazo.urgente{color:var(--crit,#c8342a);font-weight:800}
+.ajc .ajc-progress{height:4px;border-radius:99px;background:var(--line-soft,#e9e4da);overflow:hidden;margin-top:10px}
+.ajc .ajc-progress-bar{height:100%;width:0;border-radius:99px;background:var(--ink,#1c1917);transition:width .3s ease}
+.ajc .ajc-hero-count{font-size:13px;font-weight:700;color:var(--ink,#1c1917);margin-top:6px;font-variant-numeric:tabular-nums}
+.ajc .ajc-nomes-em,.ajc .ajc-demo{font-size:11.5px;color:var(--ajc-mut);margin-top:3px}
+
+/* Busca */
+.ajc .ajc-busca{display:block;width:100%;min-height:46px;margin:4px 0 6px;padding:0 14px;border:1.5px solid var(--ajc-borda);border-radius:var(--r-sm,13px);background:#fff;color:var(--ink,#1c1917);font-family:inherit;font-size:16px;-webkit-appearance:none;appearance:none}
+.ajc .ajc-busca::placeholder{color:#756e63}
+.ajc .ajc-busca:focus{outline:none;border:2px solid var(--ink,#1c1917);padding:0 13px}
+
+/* Filtros em texto */
+.ajc .ajc-filtros{display:flex;gap:4px;border-bottom:1px solid var(--line,#ddd5c4)}
+.ajc .ajc-filtro{flex:1;min-height:44px;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;background:transparent;font-weight:500;color:var(--ajc-mut);padding:0 6px;font-variant-numeric:tabular-nums}
+.ajc .ajc-filtro[aria-pressed="true"]{color:var(--ink,#1c1917);font-weight:800;border-bottom-color:var(--ink,#1c1917)}
+
+/* Linha de setor */
+.ajc .ajc-setor{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:68px;text-align:left;margin:0;padding:12px 2px;background:transparent;border:0;border-bottom:1px solid var(--line-soft,#e9e4da);border-radius:0}
+.ajc .ajc-setor:active{background:rgba(28,25,23,.04)}
+.ajc .ajc-setor-info{display:block;min-width:0;flex:1}
+.ajc .ajc-setor-cod{display:block;font-size:17.5px;font-weight:800;line-height:1.2;color:var(--ink,#1c1917);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ajc .ajc-setor-prom{display:block;font-size:13.5px;font-weight:500;color:var(--body,#57534e);margin-top:2px;line-height:1.3}
+.ajc .ajc-setor .ajc-setor-prom{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ajc .ajc-setor-nota{display:block;font-size:12px;color:var(--ajc-mut);margin-top:2px;line-height:1.3}
+.ajc .ajc-setor-estado{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px;white-space:nowrap}
+.ajc .ajc-estado-linha{display:inline-flex;align-items:center;gap:8px}
+.ajc .ajc-estado-n{font-size:14px;font-weight:700;color:var(--ink,#1c1917);font-variant-numeric:tabular-nums}
+.ajc .ajc-estado-env{font-size:11.5px;font-weight:700;color:var(--ink,#1c1917)}
+.ajc .ajc-dot{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;border:2px solid transparent;flex:none;font-size:15px;font-weight:800;line-height:1}
+.ajc .ajc-dot.falta{background:var(--crit,#c8342a);border-color:var(--crit,#c8342a)}
+.ajc .ajc-dot.sug{background:transparent;border-color:var(--crit,#c8342a)}
+.ajc .ajc-dot.ok{width:auto;height:auto;border:0;color:var(--ok,#2f7a4d)}
+
+/* Barra de envio fixa (simples) */
+.ajc .ajc-enviar{position:fixed;left:0;right:0;bottom:calc(var(--nav-total,92px) + env(safe-area-inset-bottom,0px));z-index:20;max-width:var(--maxw,720px);margin:0 auto;padding:10px var(--pad,16px) 6px;background:var(--paper,#f6f3ee);border-top:1px solid var(--line,#ddd5c4)}
+.ajc .ajc-btn-enviar{display:block;width:100%;min-height:52px;border:0;border-radius:var(--r-md,18px);background:var(--ink,#1c1917);color:#fff;font-weight:800;font-size:16px}
+.ajc .ajc-btn-enviar:active{transform:scale(.99)}
+.ajc .ajc-btn-enviar:disabled{background:var(--line-soft,#e9e4da);color:#6b655b;cursor:not-allowed;transform:none}
+.ajc .ajc-salvo{text-align:center;font-size:11.5px;color:var(--ajc-mut);margin-top:4px;min-height:16px}
+
+/* Setor: cabeçalho */
+.ajc .ajc-setor-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:var(--gap,14px)}
+.ajc .ajc-voltar{flex:none;min-width:44px;min-height:44px;border:1.5px solid var(--line,#ddd5c4);border-radius:var(--r-sm,13px);background:transparent;font-weight:800;font-size:18px;color:var(--ink,#1c1917)}
+.ajc .ajc-setor-titulo{min-width:0;flex:1}
+.ajc .ajc-setor-head .ajc-setor-cod{font-size:20px}
+.ajc .ajc-setor-head .ajc-setor-prom{font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ajc .ajc-setor-head .ajc-setor-nota{font-size:12.5px;margin-top:4px}
+.ajc .ajc-confirmar-todos{display:block;width:100%;min-height:48px;margin:0 0 var(--gap,14px);padding:10px 14px;border:1.5px solid var(--ink,#1c1917);border-radius:var(--r-md,18px);background:transparent;color:var(--ink,#1c1917);font-weight:800;font-size:14px}
+.ajc .ajc-confirmar-todos:active{background:rgba(28,25,23,.06)}
+
+/* Trecho */
+.ajc .ajc-trecho{position:relative;margin:0 0 10px;padding:12px 14px 10px;background:#fff;border:1px solid var(--line,#ddd5c4);border-radius:var(--r-md,18px)}
+.ajc .ajc-trecho.pend::before{content:"";position:absolute;right:12px;top:12px;width:9px;height:9px;border-radius:50%;background:var(--crit,#c8342a)}
+.ajc .ajc-trecho-txt{display:block;width:100%;min-height:44px;padding:0 18px 0 0;border:0;background:transparent;text-align:left;color:inherit}
+.ajc .ajc-trecho-de,.ajc .ajc-trecho-para{display:flex;align-items:flex-start;gap:10px;min-width:0}
+.ajc .ajc-trecho-para{margin-top:8px}
+.ajc .ajc-rotulo-dp{flex:none;width:38px;padding-top:3px;font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--ajc-mut)}
+.ajc .ajc-bloco{display:block;min-width:0;flex:1}
+.ajc .ajc-nome{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;font-size:14.5px;font-weight:700;line-height:1.3;color:var(--ink,#1c1917)}
+.ajc .ajc-sub{display:block;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11.5px;font-weight:500;line-height:1.3;color:var(--ajc-mut)}
+.ajc .ajc-trecho.aberto .ajc-nome{display:block;-webkit-line-clamp:unset;overflow:visible}
+.ajc .ajc-trecho.aberto .ajc-sub{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+.ajc .ajc-trecho-rodape{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line-soft,#efeae2)}
+.ajc .ajc-trecho-meta{min-width:0;flex:1}
+.ajc .ajc-trecho-dias{display:block;font-size:12px;font-weight:600;color:var(--body,#57534e)}
+.ajc .ajc-legenda{display:block;font-size:11px;color:var(--ajc-mut)}
+.ajc .ajc-legenda:empty{display:none}
+.ajc .ajc-campo{flex:none;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.ajc .ajc-rs{font-weight:700;font-size:15px;color:var(--ajc-mut)}
+.ajc .ajc-input{width:80px;min-height:46px;padding:6px 10px;border:1.5px solid var(--ajc-borda);border-radius:var(--r-sm,13px);background:#fff;font-family:inherit;font-size:18px;font-weight:800;text-align:right;color:var(--ink,#1c1917);font-variant-numeric:tabular-nums;-webkit-appearance:none;appearance:none}
+.ajc .ajc-input::placeholder{color:#756e63;font-weight:600}
+.ajc .ajc-input:focus{outline:none;border:2px solid var(--ink,#1c1917);padding:5px 9px}
+.ajc .ajc-trecho.pend .ajc-input{border-color:var(--ink,#1c1917)}
+.ajc .ajc-trecho.sug .ajc-input{color:var(--body,#57534e);font-weight:700}
+.ajc .ajc-trecho.conf .ajc-campo::before,.ajc .ajc-trecho.env .ajc-campo::before{content:"\2713";color:var(--ok,#2f7a4d);font-weight:800;font-size:16px;margin-right:2px}
+.ajc .ajc-ok{flex:none;width:46px;height:46px;border:1.5px solid var(--ink,#1c1917);border-radius:50%;background:#fff;color:var(--ink,#1c1917);font-size:20px;font-weight:800;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+.ajc .ajc-ok:active{background:var(--ok,#2f7a4d);border-color:var(--ok,#2f7a4d);color:#fff}
+.ajc .ajc-msg{margin-top:6px;font-size:12px;font-weight:600;color:var(--crit,#c8342a)}
+.ajc .ajc-msg.aviso{color:var(--warn,#a8650f)}
+.ajc .ajc-msg:empty{display:none}
+
+/* Setor completo */
+.ajc .ajc-completo{margin-top:var(--gap,14px);text-align:center;color:var(--ok,#2f7a4d);font-weight:800;font-size:15px}
+.ajc .ajc-completo button{display:block;width:100%;min-height:48px;margin-top:10px;border:0;border-radius:var(--r-sm,13px);background:var(--ink,#1c1917);color:#fff;font-weight:800}
+
+/* Folha de envio (acima da tabbar) */
+.ajc .ajc-sheet-fundo{position:fixed;inset:0;z-index:900;display:flex;align-items:flex-end;justify-content:center;background:rgba(28,25,23,.55)}
+.ajc .ajc-sheet{width:100%;max-width:var(--maxw,720px);max-height:90vh;overflow:auto;background:#fff;border-radius:var(--r-lg,24px) var(--r-lg,24px) 0 0;padding:22px var(--pad,16px) calc(18px + env(safe-area-inset-bottom,0px));animation:ajc-sobe .22s ease-out}
+.ajc .ajc-sheet:focus{outline:none}
+.ajc .ajc-sheet::before{content:"";display:block;width:40px;height:4px;border-radius:99px;background:var(--line,#ddd5c4);margin:-10px auto 14px}
+.ajc .ajc-sheet-titulo{font-size:18px;font-weight:800;color:var(--ink,#1c1917);margin:0 0 6px}
+.ajc .ajc-sheet-texto{margin:0 0 14px;font-size:14px;color:var(--body,#57534e)}
+.ajc .ajc-erro{margin:0 0 14px;padding:2px 0 2px 12px;border-left:4px solid var(--crit,#c8342a);color:var(--crit,#c8342a);font-weight:700;font-size:13.5px}
+.ajc .ajc-btn-primario,.ajc .ajc-btn-sec{display:block;width:100%;min-height:52px;border-radius:var(--r-md,18px);font-weight:800;font-size:15px;margin-top:8px}
+.ajc .ajc-btn-primario{border:0;background:var(--ink,#1c1917);color:#fff}
+.ajc .ajc-btn-primario:disabled{background:var(--line-soft,#e9e4da);color:#6b655b;cursor:wait}
+.ajc .ajc-btn-sec{border:1.5px solid var(--ink,#1c1917);background:transparent;color:var(--ink,#1c1917)}
+
+/* Toast */
+.ajc .ajc-toast{position:fixed;left:50%;top:calc(var(--bar,64px) + 10px);transform:translateX(-50%);z-index:950;max-width:calc(100% - 32px);padding:12px 18px;border-radius:99px;background:var(--ink,#1c1917);color:#fff;font-weight:700;font-size:14px;animation:ajc-entra .2s ease-out}
+.ajc .ajc-toast.ajc-toast-saindo{opacity:0;transform:translate(-50%,-8px);transition:opacity .25s,transform .25s}
+
+@keyframes ajc-sobe{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes ajc-entra{from{opacity:0;transform:translate(-50%,-8px)}to{opacity:1;transform:translate(-50%,0)}}
+
+@media (max-width:359px){
+  .ajc .ajc-input{width:78px;font-size:17px}
+  .ajc .ajc-rotulo-dp{width:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ajc *,.ajc *::before,.ajc *::after{animation:none!important;transition:none!important}
+}
+
+.ajc:has(.ajc-view[data-view=setor].ajc-ativa) .ajc-toast{display:none}
+
+/* Erros de envio com lista (ITENS_INVALIDOS) */
+.ajc .ajc-erro-lista{margin:6px 0 4px;padding-left:18px;font-weight:600;font-size:13px}
+.ajc .ajc-erro-lista li{margin:2px 0}
+.ajc .ajc-erro-mais,.ajc .ajc-erro-salvo{font-weight:500;font-size:12.5px;color:var(--ajc-mut)}
+.ajc .ajc-erro-salvo{margin-top:4px}
+
+/* ---------- integração ROTA 86 (card do Perfil, entrada por setor + código, avisos) ---------- */
+.ajc-pilula{flex:0 0 auto;font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:999px;white-space:nowrap;background:var(--warn-soft,#faf0dd);color:var(--warn,#a8650f);border:1px solid var(--warn-line,#ecd9ad)}
+.ajc-pilula.ok{background:var(--ok-soft,#e6f2e9);color:var(--ok,#2f7a4d);border-color:#c9e3d2}
+.ajc-link-aparelho{display:block;margin:6px auto 0;min-height:44px;padding:0 12px;font-size:12.5px;color:var(--mut,#8f8779);text-decoration:underline;background:none;border:0;cursor:pointer}
+.ajc-shell-aviso{padding:16px;border-radius:var(--r-md,18px);background:var(--warn-soft,#faf0dd);color:var(--warn,#a8650f);border:1px solid var(--warn-line,#ecd9ad);font-size:13px;font-weight:600}
+.ajc-entrada{padding:8px 2px 24px}
+.ajc-entrada-titulo{margin:0 0 4px;font-size:20px;font-weight:800;color:var(--ink,#1c1917)}
+.ajc-entrada-texto{margin:0 0 18px;font-size:13.5px;color:var(--body,#57534e)}
+.ajc-entrada label{display:block;margin:14px 0 6px;font-size:13px;font-weight:700;color:var(--ink,#1c1917)}
+.ajc-entrada input{display:block;width:100%;min-height:50px;padding:0 14px;border:1.5px solid #8f8779;border-radius:var(--r-sm,13px);background:#fff;color:var(--ink,#1c1917);font-family:inherit;font-size:18px;font-weight:700;-webkit-appearance:none;appearance:none}
+.ajc-entrada input:focus{outline:none;border:2px solid var(--ink,#1c1917);padding:0 13px}
+.ajc-entrada-erro{min-height:20px;margin:12px 0 0;font-size:13px;font-weight:700;color:var(--crit,#c8342a)}
+.ajc-entrada .ajc-btn-entrar{display:block;width:100%;min-height:52px;margin-top:8px;border:0;border-radius:var(--r-md,18px);background:var(--ink,#1c1917);color:#fff;font-weight:800;font-size:16px;font-family:inherit}
+.ajc-entrada .ajc-btn-entrar:disabled{background:var(--line-soft,#efeae2);color:#6b655b;cursor:wait}
+/* dentro do ROTA 86: no setor, o "Voltar" do app some (a tela tem o seu); a pílula não cabe em tela estreita junto do texto */
+#v-vt:has(.ajc-view[data-view=setor].ajc-ativa) #vtVoltar{visibility:hidden}
+/* a barra de envio (fixa) assenta em cima da tabbar flutuante do ROTA 86 (16px + 66px de altura); no desktop a tabbar vira lateral */
+#v-vt{--nav-total:84px}
+@media(min-width:1000px){#v-vt{--nav-total:0px}}
 </style>
 </head>
 <body class="auth-locked">
@@ -1163,6 +1325,7 @@ button.row:hover{background:#fafbfc;border-color:#d8dce3}
   <section class="view" id="v-fechamentos" aria-labelledby="tFech"><div class="wrap"><button type="button" class="backlink" id="fechVoltar">‹ Voltar</button><h1 class="sr-only" id="tFech">Histórico de fechamentos</h1><div id="fechCorpo"></div></div></section>
   <section class="view" id="v-faq" aria-labelledby="tFaq"><div class="wrap"><button type="button" class="backlink" id="faqVoltar">‹ Voltar</button><h1 class="sr-only" id="tFaq">FAQ do ROTA 86</h1><div id="faqCorpo"></div></div></section>
   <section class="view" id="v-canal" aria-labelledby="tCanal"><div class="wrap"><button type="button" class="backlink" id="canalVoltar">‹ Voltar</button><h1 class="sr-only" id="tCanal">Análise</h1><div id="canalCorpo"></div></div></section>
+<section class="view" id="v-vt" aria-labelledby="tVt"><div class="wrap"><button type="button" class="backlink" id="vtVoltar">‹ Voltar</button><h1 class="sr-only" id="tVt">VT da quinzena</h1><div id="ajcRaiz"></div></div></section>
 <section class="view" id="v-perfil" aria-labelledby="tPerfil"><div class="wrap"><h1 class="sr-only" id="tPerfil">Perfil e dados</h1><div id="perfilCorpo"></div></div></section>
 </main>
 
@@ -1178,6 +1341,1008 @@ button.row:hover{background:#fafbfc;border-color:#d8dce3}
 
 <div aria-live="polite" class="sr-only" id="anuncio"></div>
 
+<script>
+/* módulo AJC (app-web/ajc) */
+window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/s/AKfycbytvYa4xkwv4u2LNK-nIEF8wAbPjH8YlgOtv672yMF6-1FGMgklN9NPWxVjPodlKf2gzg/exec"};
+</script>
+<script>
+/* Lógica pura da tela de VT por trecho (sem DOM). UMD: navegador (window.AJC) e Node (require). */
+(function (root) {
+  'use strict';
+  var DIAS_ROTULO = { SEG: 'Seg', TER: 'Ter', QUA: 'Qua', QUI: 'Qui', SEX: 'Sex', SAB: 'Sáb', DOM: 'Dom' };
+  var AVISO_VALOR_ALTO = 50; // só aviso "confere?", NUNCA bloqueia (sem teto — decisão do Arthur)
+
+  /** "4,4" | "4.40" | "R$ 4,40" -> { ok, valor:'4.40', aviso? } ; vazio/negativo/NaN -> { ok:false, erro } */
+  function normalizarValor(txt) {
+    var t = String(txt === undefined || txt === null ? '' : txt).replace(/R\$/gi, '').replace(/\s/g, '');
+    if (!t) return { ok: false, erro: 'vazio' };
+    if (t.indexOf(',') !== -1) t = t.replace(/\./g, '').replace(',', '.');   // 1.234,50 -> 1234.50
+    if (!/^\d+(\.\d{1,})?$/.test(t)) return { ok: false, erro: 'inválido' };
+    var n = Math.round(parseFloat(t) * 100) / 100;
+    if (!isFinite(n)) return { ok: false, erro: 'inválido' };
+    var r = { ok: true, valor: n.toFixed(2) };
+    if (n >= AVISO_VALOR_ALTO) r.aviso = 'Valor alto — confere?';
+    return r;
+  }
+
+  function fmtBRL(v) { return String(v).replace('.', ','); }
+  function diasTexto(dias) { return String(dias || '').split(',').filter(Boolean).map(function (d) { return DIAS_ROTULO[d] || d; }).join(' · '); }
+
+  /** Estado efetivo do trecho: rascunho local vale como CONFIRMADO ("a enviar"). */
+  function estadoEfetivo(t, rascunho) {
+    var r = rascunho && rascunho[t.id];
+    if (r && r.valor) return 'A_ENVIAR';
+    return t.estado; // PENDENTE | SUGERIDO | CONFIRMADO (servidor)
+  }
+  function valorEfetivo(t, rascunho) { var r = rascunho && rascunho[t.id]; return r && r.valor ? r.valor : (t.valor || ''); }
+
+  function resumoSetor(setor, rascunho) {
+    var r = { total: setor.trechos.length, confirmados: 0, aEnviar: 0, sugeridos: 0, pendentes: 0 };
+    setor.trechos.forEach(function (t) {
+      var e = estadoEfetivo(t, rascunho);
+      if (e === 'CONFIRMADO') r.confirmados++;
+      else if (e === 'A_ENVIAR') r.aEnviar++;
+      else if (e === 'SUGERIDO') r.sugeridos++;
+      else r.pendentes++;
+    });
+    r.faltam = r.sugeridos + r.pendentes;
+    r.pronto = r.faltam === 0;
+    r.transmitido = r.pronto && r.aEnviar === 0;
+    return r;
+  }
+
+  function resumoGeral(setores, rascunho) {
+    var g = { setores: setores.length, prontos: 0, transmitidos: 0, aEnviar: 0, setoresComEnvio: 0, faltam: 0 };
+    setores.forEach(function (s) {
+      var r = resumoSetor(s, rascunho);
+      if (r.pronto) g.prontos++;
+      if (r.transmitido) g.transmitidos++;
+      g.aEnviar += r.aEnviar; g.faltam += r.faltam;
+      if (r.aEnviar) g.setoresComEnvio++;
+    });
+    return g;
+  }
+
+  /** Comparação natural de códigos: PR2 antes de PR10. */
+  function cmpNatural(a, b) {
+    var x = String(a).toUpperCase().match(/\d+|\D+/g) || [], y = String(b).toUpperCase().match(/\d+|\D+/g) || [];
+    for (var i = 0; i < Math.min(x.length, y.length); i++) {
+      if (x[i] === y[i]) continue;
+      var nx = /^\d/.test(x[i]), ny = /^\d/.test(y[i]);
+      if (nx && ny) { var d = parseInt(x[i], 10) - parseInt(y[i], 10); if (d) return d; if (x[i].length !== y[i].length) return x[i].length - y[i].length; }
+      else return x[i] < y[i] ? -1 : 1;
+    }
+    return x.length - y.length;
+  }
+  /** Ordem da lista: por código do setor (natural). O parâmetro rascunho é mantido por compatibilidade. */
+  function ordenar(setores) {
+    return setores.slice().sort(function (a, b) { return cmpNatural(a.setor, b.setor); });
+  }
+  function semAcento(t) { return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim(); }
+  /** Busca por código do setor OU nome do promotor (sem acento/caixa). Termo vazio = tudo. */
+  function buscar(setores, termo) {
+    var q = semAcento(termo);
+    if (!q) return setores;
+    return setores.filter(function (s) { return semAcento(s.setor).indexOf(q) !== -1 || semAcento(s.promotor).indexOf(q) !== -1; });
+  }
+
+  function filtrar(setores, rascunho, filtro) {
+    if (filtro === 'faltam') return setores.filter(function (s) { return !resumoSetor(s, rascunho).pronto; });
+    if (filtro === 'prontos') return setores.filter(function (s) { return resumoSetor(s, rascunho).pronto; });
+    return setores;
+  }
+
+  /** Confirma de uma vez os valores SUGERIDOS (herdados) do setor -> novo rascunho (não muta o original). */
+  function confirmarSugeridos(setor, rascunho) {
+    var novo = Object.assign({}, rascunho);
+    setor.trechos.forEach(function (t) { if (t.estado === 'SUGERIDO' && !(novo[t.id] && novo[t.id].valor) && t.valor) novo[t.id] = { valor: t.valor }; });
+    return novo;
+  }
+
+  function definirValor(rascunho, trecho, txt) {
+    var n = normalizarValor(txt), novo = Object.assign({}, rascunho);
+    if (!n.ok) { if (n.erro === 'vazio') { delete novo[trecho.id]; return { rascunho: novo, aviso: '' , ok: true }; } return { rascunho: rascunho, ok: false, erro: n.erro }; }
+    // mesmo valor que o servidor já confirmou => nada a enviar
+    if (trecho.estado === 'CONFIRMADO' && trecho.valor === n.valor) { delete novo[trecho.id]; return { rascunho: novo, ok: true, aviso: n.aviso || '' }; }
+    novo[trecho.id] = { valor: n.valor };
+    return { rascunho: novo, ok: true, aviso: n.aviso || '' };
+  }
+
+  /** Payload mínimo: só o que mudou. lote reaproveitado em retentativas (idempotência no servidor). */
+  function montarPayload(quinzena, coordenador, rascunho, lote) {
+    var itens = Object.keys(rascunho).filter(function (id) { return rascunho[id] && rascunho[id].valor; })
+      .sort().map(function (id) { return { trecho_id: id, valor: rascunho[id].valor }; });
+    return { contrato: 'ajc_vt/1', quinzena: quinzena, coordenador: coordenador, lote: lote, itens: itens };
+  }
+
+  /** Depois de transmitir com sucesso: o que foi enviado vira CONFIRMADO no servidor e sai do rascunho. */
+  function aplicarEnvio(setores, rascunho, enviados) {
+    var ids = {}; enviados.forEach(function (i) { ids[i.trecho_id] = i.valor; });
+    var novoR = Object.assign({}, rascunho);
+    Object.keys(ids).forEach(function (id) { if (novoR[id] && novoR[id].valor === ids[id]) delete novoR[id]; });
+    var novosS = setores.map(function (s) {
+      return Object.assign({}, s, { trechos: s.trechos.map(function (t) {
+        return ids[t.id] !== undefined ? Object.assign({}, t, { valor: ids[t.id], estado: 'CONFIRMADO' }) : t;
+      }) });
+    });
+    return { setores: novosS, rascunho: novoR };
+  }
+
+  /** Assinatura (hash simples, não criptográfico) do conteúdo de um envio: ids + valores, em ordem fixa.
+      Serve para decidir se um lote pode ser reutilizado (mesmo conteúdo) ou se precisa de lote novo. */
+  function assinaturaItens(itens) {
+    var txt = (itens || []).map(function (i) { return i.trecho_id + '=' + i.valor; }).sort().join('\n'), h = 5381, k;
+    for (k = 0; k < txt.length; k++) h = ((h * 33) ^ txt.charCodeAt(k)) >>> 0;
+    return (itens || []).length + ':' + h.toString(36);
+  }
+
+  function novoLote() { return 'l' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+  var API = { normalizarValor: normalizarValor, fmtBRL: fmtBRL, diasTexto: diasTexto, estadoEfetivo: estadoEfetivo, valorEfetivo: valorEfetivo,
+    resumoSetor: resumoSetor, resumoGeral: resumoGeral, ordenar: ordenar, buscar: buscar, cmpNatural: cmpNatural, filtrar: filtrar, confirmarSugeridos: confirmarSugeridos,
+    definirValor: definirValor, montarPayload: montarPayload, aplicarEnvio: aplicarEnvio, assinaturaItens: assinaturaItens, novoLote: novoLote, AVISO_VALOR_ALTO: AVISO_VALOR_ALTO };
+  if (typeof module !== 'undefined' && module.exports) module.exports = API; else root.AJC = API;
+})(typeof window !== 'undefined' ? window : this);
+
+</script>
+<script>
+/* Fonte HTTP da tela de VT: mesma interface da fonte fake (carregar(), transmitir(payload)), falando com o
+   endpoint do Apps Script (apps_script_vt/README_ENDPOINT.md). A URL NUNCA fica neste arquivo: vem de
+   window.AJC_CONFIG.endpoint (injetado só no build local, fora do git).
+   Regras: POST text/plain (sem preflight), corpo JSON, SEM no-cors (precisa ler a resposta), timeout de 60 s.
+   Todo erro vira Error com .codigo e .message curta em PT-BR pronta para o coordenador. Nunca registra o código no console. */
+(function (root) {
+  'use strict';
+
+  var TIMEOUT_MS = 60000;
+
+  var MENSAGENS = {
+    ACESSO_NEGADO: 'Setor ou código inválido.',
+    BLOQUEADO: 'Muitas tentativas. Tente de novo em 15 minutos.',
+    SEM_QUINZENA_ABERTA: 'Nenhuma quinzena aberta agora.',
+    QUINZENA_AMBIGUA: 'Quinzena indefinida. Fale com o BKO.',
+    QUINZENA_INVALIDA: 'Quinzena não encontrada. Atualize a tela.',
+    QUINZENA_FECHADA: 'A quinzena foi encerrada. Fale com o BKO.',
+    ITENS_INVALIDOS: 'Alguns valores foram recusados.',
+    LOTE_REUTILIZADO: 'Este envio mudou. Toque em Tentar de novo.',
+    LOTE_INVALIDO: 'Envio inválido. Toque em Tentar de novo.',
+    OCUPADO: 'Servidor ocupado, tente de novo.',
+    SEM_CONEXAO: 'Sem conexão. Tente de novo.',
+    RESPOSTA_INVALIDA: 'Resposta inesperada do servidor. Tente de novo.',
+    ERRO_CONFIG: 'Serviço ainda não configurado. Fale com o BKO.',
+    ERRO_INTERNO: 'Erro no servidor. Tente de novo; se repetir, fale com o BKO.',
+    TAMANHO_EXCEDIDO: 'Envio grande demais. Fale com o BKO.',
+    ITENS_DEMAIS: 'Envio com valores demais. Fale com o BKO.',
+    CONTRATO_INVALIDO: 'Versão do app não é aceita. Atualize a página.'
+  };
+  var PADRAO = 'Não foi possível concluir. Tente de novo.';
+
+  function erro(codigo, extra) {
+    var e = new Error(MENSAGENS[codigo] || PADRAO);
+    e.codigo = codigo;
+    if (extra) Object.keys(extra).forEach(function (k) { e[k] = extra[k]; });
+    return e;
+  }
+
+  function criar(cfg) {
+    cfg = cfg || {};
+    var url = String(cfg.url || '');
+    var coordenador = String(cfg.coordenador === undefined ? '' : cfg.coordenador).trim();
+    var codigo = String(cfg.codigo === undefined ? '' : cfg.codigo).trim();
+    var timeoutMs = cfg.timeoutMs > 0 ? cfg.timeoutMs : TIMEOUT_MS;
+    var fetchFn = cfg.fetch || (typeof fetch === 'function' ? fetch.bind(typeof globalThis !== 'undefined' ? globalThis : root) : null);
+
+    function chamar(corpo) {
+      if (!url || !fetchFn) return Promise.reject(erro('SEM_CONEXAO'));
+      var ctl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctl) ctl.abort(); }, timeoutMs);
+      var pedido = {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },   // "simples": sem preflight CORS
+        body: JSON.stringify(corpo),
+        redirect: 'follow'
+      };
+      if (ctl) pedido.signal = ctl.signal;
+      var p;
+      try { p = Promise.resolve(fetchFn(url, pedido)); } catch (e) { p = Promise.reject(e); }
+      return p.then(function (resp) {
+        if (!resp || !resp.ok) throw erro('RESPOSTA_INVALIDA');
+        return resp.text();
+      }, function () {
+        throw erro('SEM_CONEXAO');                                   // rede caída, CORS, DNS ou abort (timeout)
+      }).then(function (texto) {
+        var obj;
+        try { obj = JSON.parse(texto); } catch (e) { throw erro('RESPOSTA_INVALIDA'); }
+        if (!obj || typeof obj !== 'object') throw erro('RESPOSTA_INVALIDA');
+        if (obj.ok !== true) {
+          var extra = {};
+          if (Array.isArray(obj.erros)) extra.erros = obj.erros;
+          if (obj.totalErros !== undefined) extra.totalErros = obj.totalErros;
+          throw erro(typeof obj.codigo === 'string' && obj.codigo ? obj.codigo : 'ERRO_INTERNO', extra);
+        }
+        return obj;
+      }).then(function (obj) { clearTimeout(timer); return obj; }, function (e) {
+        clearTimeout(timer);
+        // corpo lido depois do timeout: o abort também derruba resp.text()
+        throw (e && e.codigo) ? e : erro('SEM_CONEXAO');
+      });
+    }
+
+    return {
+      carregar: function () {
+        return chamar({ acao: 'carregar', coordenador: coordenador, codigo: codigo });
+      },
+      transmitir: function (payload) {
+        var corpo = Object.assign({}, payload || {});
+        corpo.acao = 'transmitir';
+        corpo.coordenador = coordenador;
+        if (!corpo.codigo) corpo.codigo = codigo;
+        return chamar(corpo);
+      }
+    };
+  }
+
+  var API = { criar: criar, MENSAGENS: MENSAGENS };
+  if (typeof module !== 'undefined' && module.exports) module.exports = API;
+  else root.AJC_FONTE_HTTP = API;
+})(typeof window !== 'undefined' ? window : this);
+
+</script>
+<script>
+/* Interface da tela de VT por trecho. JS vanilla (ES2017). Depende de window.AJC (ajc_logica.js).
+   window.AJC_UI.montar(container, fonte, opcoes) -> { destruir(), recarregar() }
+   opcoes (opcional): { storage } para injetar um storage no lugar de window.localStorage. */
+(function (root) {
+  'use strict';
+  var AJC = root.AJC;
+
+  function esc(s) {
+    return String(s === undefined || s === null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function hhmm(ts) { var d = new Date(ts); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+  function ddmm(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso || ''); return m ? m[3] + '/' + m[2] : ''; }
+  /* Nomes vindos em CAIXA ALTA viram "Título" (de/da/do/e ficam minúsculos). */
+  function titulo(nome) {
+    var n = String(nome || '').trim().replace(/\s+/g, ' ');
+    if (!n || n !== n.toUpperCase()) return n;
+    return n.toLowerCase().split(' ').map(function (w, i) {
+      return i > 0 && /^(de|da|do|das|dos|e)$/.test(w) ? w : w.charAt(0).toUpperCase() + w.slice(1);
+    }).join(' ');
+  }
+  function nomeCurto(nome) {
+    var p = titulo(nome).split(' ').filter(Boolean);
+    if (!p.length) return '';
+    if (p.length === 1) return p[0];
+    return p[0] + ' ' + p[p.length - 1].charAt(0).toUpperCase() + '.';
+  }
+  function plural(n, um, varios) { return n + ' ' + (n === 1 ? um : varios); }
+
+  function montar(container, fonte, opcoes) {
+    opcoes = opcoes || {};
+    var S = {
+      dados: null, rascunho: {}, lote: AJC.novoLote(), filtro: 'todos', busca: '', view: 'lista', setorAtual: null,
+      enviando: false, erroEnvio: false, erroInfo: null, assinFalha: null, salvoEm: null, erroSalvar: false, folha: false, completo: false, abertos: {}
+    };
+    var destruido = false, toastTimer = null, ultimoFoco = null;
+    var rootEl = document.createElement('div');
+    rootEl.className = 'ajc';
+    container.innerHTML = '';
+    container.appendChild(rootEl);
+
+    /* ---------- persistência ---------- */
+    function storage() { try { return opcoes.storage || root.localStorage; } catch (e) { return null; } }
+    function chave() { return 'rota86_ajc_vt_v1:' + S.dados.quinzena.id + ':' + S.dados.coordenador.setor; }
+    function idsExistentes() {
+      var ids = {};
+      S.dados.setores.forEach(function (s) { s.trechos.forEach(function (t) { ids[t.id] = true; }); });
+      return ids;
+    }
+    function podar() {
+      var ids = idsExistentes(), novo = {};
+      Object.keys(S.rascunho).forEach(function (id) { if (ids[id]) novo[id] = S.rascunho[id]; });
+      S.rascunho = novo;
+    }
+    function restaurar() {
+      try {
+        var st = storage();
+        var raw = st && st.getItem(chave());
+        if (raw) {
+          var o = JSON.parse(raw);
+          if (o && typeof o === 'object') {
+            if (o.rascunho && typeof o.rascunho === 'object') S.rascunho = o.rascunho;
+            if (o.lote) S.lote = o.lote;
+            if (typeof o.assin === 'string' && o.assin) S.assinFalha = o.assin;   // registro antigo não tem: segue reutilizando o lote
+            if (o.salvoEm) S.salvoEm = o.salvoEm;
+            podar();
+          }
+        }
+      } catch (e) { /* segue em memória */ }
+    }
+    function persistir() {
+      try {
+        var st = storage();
+        if (!st) throw new Error('sem storage');
+        if (!Object.keys(S.rascunho).length) { st.removeItem(chave()); S.salvoEm = Date.now(); }
+        else { S.salvoEm = Date.now(); st.setItem(chave(), JSON.stringify({ rascunho: S.rascunho, lote: S.lote, assin: S.assinFalha || undefined, salvoEm: S.salvoEm })); }
+        S.erroSalvar = false;
+      } catch (e) { S.erroSalvar = true; }
+    }
+
+    /* ---------- helpers de dados ---------- */
+    function setorPorCodigo(cod) {
+      var r = null;
+      S.dados.setores.forEach(function (s) { if (s.setor === cod) r = s; });
+      return r;
+    }
+    function classeEstado(e) { return e === 'PENDENTE' ? 'pend' : e === 'SUGERIDO' ? 'sug' : e === 'CONFIRMADO' ? 'conf' : 'env'; }
+    function filtroPadrao() {
+      return S.dados.setores.some(function (s) { return !AJC.resumoSetor(s, S.rascunho).pronto; }) ? 'faltam' : 'todos';
+    }
+    function geral() { return AJC.resumoGeral(S.dados.setores, S.rascunho); }
+    function $(sel, ctx) { return (ctx || rootEl).querySelector(sel); }
+    function $$(sel, ctx) { return Array.prototype.slice.call((ctx || rootEl).querySelectorAll(sel)); }
+    function acharTrecho(id) {
+      var r = null;
+      $$('.ajc-trecho').forEach(function (el) { if (el.getAttribute('data-id') === id) r = el; });
+      return r;
+    }
+    function dispararResumo() {
+      try { container.dispatchEvent(new CustomEvent('ajc:resumo', { detail: geral() })); } catch (e) { /* ignora */ }
+    }
+
+    /* ---------- HTML: lista ---------- */
+    function notaSetor(s, curto) {
+      if (s.situacao === 'COBERTURA') return curto ? 'Cobertura · VT vai para quem cobre' : 'Cobertura' + (s.titular ? ' de ' + nomeCurto(s.titular) : '') + ' — o VT é de quem cobre';
+      if (s.situacao === 'AVISO_PREVIO') return curto ? 'Aviso prévio' + (s.fim_previsto ? ' até ' + ddmm(s.fim_previsto) : '') : 'Último dia: ' + ddmm(s.fim_previsto) + ' — calculado até lá';
+      return '';
+    }
+    function estadoSetor(s) {
+      var r = AJC.resumoSetor(s, S.rascunho), feitos = r.confirmados + r.aEnviar;
+      var c = r.pronto ? 'ok' : r.pendentes === 0 ? 'sug' : 'falta';
+      var rot = r.pronto ? 'Pronto' : r.pendentes === 0 ? 'Falta confirmar valores sugeridos' : 'Faltam valores';
+      return { c: c, rot: rot, n: feitos + '/' + r.total, env: r.aEnviar > 0 };
+    }
+    function htmlHero() {
+      var g = geral(), q = S.dados.quinzena, pct = g.setores ? Math.round(g.prontos * 100 / g.setores) : 0;
+      var d = q.diasRestantes, dt = d === undefined || d === null ? '' : d < 0 ? 'prazo vencido' : d === 0 ? 'vence hoje' : plural(d, 'dia', 'dias');
+      var urgente = d !== undefined && d !== null && d <= 2;
+      var prazo = (q.prazo ? 'Prazo ' + ddmm(q.prazo) : '') + (q.prazo && dt ? ' · ' : '') + dt;
+      return '<div class="ajc-hero" data-testid="hero">' +
+        '<div class="ajc-hero-topo"><div class="ajc-hero-label">' + esc(q.rotulo) + '</div>' +
+        '<button type="button" class="ajc-atualizar" data-act="atualizar" data-testid="atualizar" aria-label="Atualizar dados" title="Atualizar">↻</button></div>' +
+        '<div class="ajc-hero-prazo' + (urgente ? ' urgente' : '') + '">' + esc(prazo) + '</div>' +
+        '<div class="ajc-progress" role="progressbar" aria-label="Setores prontos" aria-valuemin="0" aria-valuemax="' + g.setores + '" aria-valuenow="' + g.prontos + '"><div class="ajc-progress-bar" style="width:' + pct + '%"></div></div>' +
+        '<div class="ajc-hero-count">' + g.prontos + ' de ' + g.setores + ' setores prontos</div>' +
+        (q.nomes_em ? '<div class="ajc-nomes-em">Promotores conforme catálogo de ' + esc(ddmm(q.nomes_em)) + '</div>' : '') +
+        (q.demo ? '<div class="ajc-demo">Simulação · valores de teste</div>' : '') + '</div>';
+    }
+    function htmlBusca() {
+      return '<input class="ajc-busca" type="search" data-testid="busca" placeholder="Buscar setor ou nome" aria-label="Buscar setor ou nome" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" value="' + esc(S.busca) + '">';
+    }
+    function htmlFiltros() {
+      var a = S.dados.setores, R = S.rascunho;
+      var n = { faltam: AJC.filtrar(a, R, 'faltam').length, todos: a.length, prontos: AJC.filtrar(a, R, 'prontos').length };
+      var rot = { faltam: 'Faltam', todos: 'Todos', prontos: 'Prontos' };
+      return '<div class="ajc-filtros" role="group" aria-label="Filtrar setores">' + ['faltam', 'todos', 'prontos'].map(function (f) {
+        return '<button type="button" class="ajc-filtro" data-act="filtro" data-filtro="' + f + '" data-testid="filtro-' + f + '" aria-pressed="' + (S.filtro === f) + '">' + rot[f] + ' <span class="ajc-filtro-n">' + n[f] + '</span></button>';
+      }).join('') + '</div>';
+    }
+    function htmlCard(s) {
+      var e = estadoSetor(s), nota = notaSetor(s, true);
+      return '<button type="button" class="ajc-setor" data-act="abrir" data-setor="' + esc(s.setor) + '" data-testid="setor-' + esc(s.setor) + '">' +
+        '<span class="ajc-setor-info"><span class="ajc-setor-cod">' + esc(s.setor) + '</span>' +
+        '<span class="ajc-setor-prom">' + esc(nomeCurto(s.promotor)) + '</span>' +
+        (nota ? '<span class="ajc-setor-nota">' + esc(nota) + '</span>' : '') + '</span>' +
+        '<span class="ajc-setor-estado"><span class="ajc-estado-linha"><span class="ajc-dot ' + e.c + '" role="img" aria-label="' + e.rot + '">' + (e.c === 'ok' ? '✓' : '') + '</span>' +
+        '<span class="ajc-estado-n">' + e.n + '</span></span>' + (e.env ? '<span class="ajc-estado-env">a enviar</span>' : '') + '</span></button>';
+    }
+    function htmlEnviar() {
+      var n = geral().aEnviar;
+      return '<div class="ajc-enviar">' +
+        '<button type="button" class="ajc-btn-enviar" data-act="transmitir" data-testid="btn-transmitir"' + (n ? '' : ' disabled') + '>' + (n ? 'Transmitir ' + plural(n, 'valor', 'valores') : 'Nada para transmitir') + '</button>' +
+        '<div class="ajc-salvo" data-testid="salvo">' + esc(textoSalvo()) + '</div></div>';
+    }
+    function textoSalvo() {
+      if (S.erroSalvar) return 'Não foi possível salvar neste aparelho';
+      return 'Salvo neste aparelho' + (S.salvoEm ? ' · ' + hhmm(S.salvoEm) : '');
+    }
+    function htmlItens() {
+      var lista = AJC.ordenar(AJC.buscar(AJC.filtrar(S.dados.setores, S.rascunho, S.filtro), S.busca), S.rascunho);
+      if (lista.length) return lista.map(htmlCard).join('');
+      return '<p class="ajc-vazio">' + (S.busca.trim() ? 'Nenhum setor encontrado.' : S.filtro === 'faltam' ? 'Nenhum setor com pendência. Tudo certo por aqui.' : S.filtro === 'prontos' ? 'Nenhum setor pronto ainda.' : 'Nenhum setor.') + '</p>';
+    }
+    function htmlLista() {
+      return '<section class="ajc-view ajc-ativa" data-view="lista">' + htmlHero() + htmlBusca() + htmlFiltros() +
+        '<div class="ajc-lista">' + htmlItens() + '</div>' + htmlEnviar() + '</section>';
+    }
+
+    /* ---------- HTML: setor ---------- */
+    function legendaDe(e) { return e === 'SUGERIDO' ? 'da última quinzena' : e === 'A_ENVIAR' ? 'a enviar' : ''; }
+    function htmlPonta(rot, nome, sub, cls) {
+      var casa = String(nome).trim().toLowerCase() === 'casa';
+      return '<span class="' + cls + '"><span class="ajc-rotulo-dp">' + rot + '</span><span class="ajc-bloco"><span class="ajc-nome">' + esc(nome) + '</span>' +
+        (!casa && sub ? '<span class="ajc-sub">' + esc(sub) + '</span>' : '') + '</span></span>';
+    }
+    function htmlTrecho(t) {
+      var e = AJC.estadoEfetivo(t, S.rascunho), v = AJC.valorEfetivo(t, S.rascunho), ab = !!S.abertos[t.id];
+      var rota = esc(t.de) + ' → ' + esc(t.para);
+      return '<div class="ajc-trecho ' + classeEstado(e) + (ab ? ' aberto' : '') + '" data-id="' + esc(t.id) + '" data-testid="trecho-' + esc(t.id) + '">' +
+        '<button type="button" class="ajc-trecho-txt" data-act="expandir" data-id="' + esc(t.id) + '" data-testid="expandir-' + esc(t.id) + '" aria-expanded="' + ab + '" aria-label="' + rota + (ab ? ' — recolher' : ' — ver nome completo') + '">' +
+        htmlPonta('DE', t.de, t.de_sub, 'ajc-trecho-de') + htmlPonta('PARA', t.para, t.para_sub, 'ajc-trecho-para') + '</button>' +
+        '<div class="ajc-trecho-rodape"><div class="ajc-trecho-meta"><span class="ajc-trecho-dias">' + esc(diasLinha(t)) + '</span><span class="ajc-legenda">' + legendaDe(e) + '</span></div>' +
+        '<div class="ajc-campo"><span class="ajc-rs">R$</span>' +
+        '<input class="ajc-input" type="text" inputmode="decimal" enterkeyhint="next" autocomplete="off" placeholder="0,00" value="' + esc(AJC.fmtBRL(v)) + '"' +
+        ' aria-label="Valor de ' + esc(t.de) + ' → ' + esc(t.para) + '" data-id="' + esc(t.id) + '" data-testid="input-' + esc(t.id) + '">' + (e === 'SUGERIDO' ? htmlOk(t) : '') + '</div></div>' +
+        '</div>';
+    }
+    function diasLinha(t) { return AJC.diasTexto(t.dias); }
+    function htmlOk(t) {
+      return '<button type="button" class="ajc-ok" data-act="ok" data-id="' + esc(t.id) + '" data-testid="ok-' + esc(t.id) + '" aria-label="Confirmar valor de ' + esc(t.de) + ' → ' + esc(t.para) + '">✓</button>';
+    }
+    function htmlConfirmarTodos(s) {
+      var r = AJC.resumoSetor(s, S.rascunho);
+      if (!r.sugeridos) return '';
+      return '<button type="button" class="ajc-confirmar-todos" data-act="confirmar-todos" data-testid="confirmar-todos">Igual à última quinzena — confirmar ' + plural(r.sugeridos, 'valor', 'valores') + '</button>';
+    }
+    function htmlCompleto(s) {
+      if (!(S.completo && AJC.resumoSetor(s, S.rascunho).pronto)) return '';
+      return '<div class="ajc-completo" data-testid="setor-completo"><span class="ajc-completo-txt">Setor completo ✓</span> <button type="button" data-act="voltar" data-testid="voltar-lista">Voltar à lista</button></div>';
+    }
+    function htmlSetor(s) {
+      var nota = notaSetor(s, false);
+      return '<section class="ajc-view ajc-ativa" data-view="setor" data-setor="' + esc(s.setor) + '">' +
+        '<header class="ajc-setor-head"><button type="button" class="ajc-voltar" data-act="voltar" data-testid="voltar" aria-label="Voltar à lista">←</button>' +
+        '<div class="ajc-setor-titulo"><div class="ajc-setor-cod">' + esc(s.setor) + '</div><div class="ajc-setor-prom">' + esc(titulo(s.promotor)) + '</div>' +
+        (nota ? '<div class="ajc-setor-nota">' + esc(nota) + '</div>' : '') + '</div></header>' +
+        '<div class="ajc-conf-slot" style="display:contents">' + htmlConfirmarTodos(s) + '</div>' +
+        '<div class="ajc-trechos">' + s.trechos.map(htmlTrecho).join('') + '</div>' +
+        '<div class="ajc-completo-slot" style="display:contents">' + htmlCompleto(s) + '</div></section>';
+    }
+
+    /* ---------- render ---------- */
+    function render(opts) {
+      opts = opts || {};
+      var velho = $('.ajc-view');
+      if (velho) velho.parentNode.removeChild(velho);
+      var html;
+      if (!S.dados) html = '<section class="ajc-view ajc-ativa" data-view="lista"><p class="ajc-vazio">Carregando…</p></section>';
+      else if (S.view === 'setor' && setorPorCodigo(S.setorAtual)) html = htmlSetor(setorPorCodigo(S.setorAtual));
+      else { S.view = 'lista'; html = htmlLista(); }
+      rootEl.insertAdjacentHTML('afterbegin', html);
+      if (opts.topo) { try { container.scrollTop = 0; root.scrollTo(0, 0); } catch (e) { /* ignora */ } }
+    }
+    function renderErroCarga(msg) {
+      var velho = $('.ajc-view');
+      if (velho) velho.parentNode.removeChild(velho);
+      rootEl.insertAdjacentHTML('afterbegin', '<section class="ajc-view ajc-ativa" data-view="lista"><p class="ajc-vazio ajc-erro" role="alert">' + esc(msg || 'Não foi possível carregar os dados.') + '</p>' +
+        '<button type="button" class="ajc-atualizar" data-act="atualizar" data-testid="atualizar">Tentar de novo</button></section>');
+    }
+
+    /* ---------- atualizações pontuais (sem destruir foco) ---------- */
+    function atualizarEnviar() {
+      var b = $('[data-testid="btn-transmitir"]'), sv = $('.ajc-salvo');
+      if (b) {
+        var n = geral().aEnviar;
+        b.disabled = !n;
+        b.textContent = n ? 'Transmitir ' + plural(n, 'valor', 'valores') : 'Nada para transmitir';
+      }
+      if (sv) sv.textContent = textoSalvo();
+    }
+    function atualizarTrecho(el, t, forcarInput) {
+      var e = AJC.estadoEfetivo(t, S.rascunho), inp = $('.ajc-input', el);
+      ['pend', 'sug', 'conf', 'env'].forEach(function (c) { el.classList.remove(c); });
+      el.classList.add(classeEstado(e));
+      var lg = $('.ajc-legenda', el); if (lg) lg.textContent = legendaDe(e);
+      $('.ajc-trecho-dias', el).textContent = diasLinha(t);
+      if (forcarInput || document.activeElement !== inp) inp.value = AJC.fmtBRL(AJC.valorEfetivo(t, S.rascunho));
+      var ok = $('.ajc-ok', el);
+      if (e === 'SUGERIDO' && !ok) $('.ajc-campo', el).insertAdjacentHTML('beforeend', htmlOk(t));
+      else if (e !== 'SUGERIDO' && ok) ok.parentNode.removeChild(ok);
+      var m = $('.ajc-msg', el);
+      if (m && forcarInput) m.parentNode.removeChild(m);
+    }
+    function mensagem(el, texto, tipo) {
+      var m = $('.ajc-msg', el);
+      if (!texto) { if (m) m.parentNode.removeChild(m); return; }
+      if (!m) { m = document.createElement('div'); el.appendChild(m); }
+      m.className = 'ajc-msg ajc-msg-' + tipo + ' ' + tipo;
+      m.setAttribute('role', tipo === 'erro' ? 'alert' : 'status');
+      m.textContent = texto;
+    }
+    function atualizarSetorUI() {
+      var s = setorPorCodigo(S.setorAtual);
+      if (!s || S.view !== 'setor') return;
+      var a = $('.ajc-conf-slot'), c = $('.ajc-completo-slot');
+      if (a) {                                          // não troca o botão existente (evita perder o toque)
+        var n = AJC.resumoSetor(s, S.rascunho).sugeridos, btn = $('.ajc-confirmar-todos', a);
+        if (!n) a.innerHTML = '';
+        else if (btn) btn.textContent = 'Igual à última quinzena — confirmar ' + plural(n, 'valor', 'valores');
+        else a.innerHTML = htmlConfirmarTodos(s);
+      }
+      if (c) c.innerHTML = htmlCompleto(s);
+    }
+    function mudou() {
+      persistir();
+      atualizarEnviar();
+      atualizarSetorUI();
+      dispararResumo();
+    }
+
+    /* ---------- edição de valores ---------- */
+    function trechoPorId(id) {
+      var r = null;
+      S.dados.setores.forEach(function (s) { s.trechos.forEach(function (t) { if (t.id === id) r = t; }); });
+      return r;
+    }
+    /* Devolve true se o valor ficou válido (ou inalterado). */
+    function salvarCampo(input, viaEnter) {
+      var t = trechoPorId(input.getAttribute('data-id'));
+      var el = acharTrecho(input.getAttribute('data-id'));
+      if (!t || !el) return true;
+      var txt = input.value.trim(), cur = AJC.valorEfetivo(t, S.rascunho), estado = AJC.estadoEfetivo(t, S.rascunho);
+      var n = AJC.normalizarValor(txt);
+      if (n.ok && cur && n.valor === cur) {            // não mudou
+        if (estado === 'SUGERIDO' && viaEnter) { S.rascunho = AJC.definirValor(S.rascunho, t, txt).rascunho; atualizarTrecho(el, t); mensagem(el, '', ''); mudou(); }
+        return true;
+      }
+      var res = AJC.definirValor(S.rascunho, t, txt);
+      if (!res.ok) { mensagem(el, 'Valor inválido. Use números, ex.: 4,40', 'erro'); return false; }
+      S.rascunho = res.rascunho;
+      mensagem(el, res.aviso || '', 'aviso');
+      atualizarTrecho(el, t, !txt);                     // vazio: volta ao valor do servidor
+      if (txt && n.ok) input.value = AJC.fmtBRL(n.valor);
+      mudou();
+      return true;
+    }
+    function avancar(input) {
+      var s = setorPorCodigo(S.setorAtual), id = input.getAttribute('data-id'), ts = s.trechos, i = 0, k, alvo = null;
+      ts.forEach(function (t, j) { if (t.id === id) i = j; });
+      for (k = 1; k < ts.length && !alvo; k++) {
+        var t = ts[(i + k) % ts.length], e = AJC.estadoEfetivo(t, S.rascunho);
+        if (e === 'PENDENTE' || e === 'SUGERIDO') alvo = t;
+      }
+      if (alvo) { var el = acharTrecho(alvo.id); if (el) { var inp = $('.ajc-input', el); inp.focus(); try { inp.select(); } catch (e) { /* ignora */ } } return; }
+      input.blur();
+      if (AJC.resumoSetor(s, S.rascunho).pronto) { S.completo = true; atualizarSetorUI(); var c = $('.ajc-completo'); if (c && c.scrollIntoView) c.scrollIntoView({ block: 'nearest' }); }
+    }
+
+    /* ---------- folha de envio ---------- */
+    var MOTIVOS = { VALOR_INVALIDO: 'valor inválido', TRECHO_INVALIDO: 'trecho fora da sua lista — atualize a tela', DUPLICADO: 'repetido', ITEM_INVALIDO: 'item inválido' };
+    var SALVOS = 'Seus valores continuam salvos neste aparelho.';
+    /* Repetir o mesmo envio não adianta nestes casos: só o botão Voltar. */
+    function semNovaTentativa() {
+      var c = S.erroInfo && S.erroInfo.codigo;
+      return c === 'ITENS_INVALIDOS' || c === 'QUINZENA_FECHADA' || c === 'ACESSO_NEGADO' || c === 'BLOQUEADO';
+    }
+    function htmlErroEnvio() {
+      if (!S.erroEnvio) return '';
+      var ei = S.erroInfo || {};
+      if (ei.codigo === 'ITENS_INVALIDOS') {
+        var lista = (ei.erros || []).slice(0, 5).map(function (x) {
+          var t = trechoPorId(x && x.trecho_id);
+          return '<li>' + (t ? esc(t.de) + ' → ' + esc(t.para) : 'Trecho que não existe mais') + ': ' + esc(MOTIVOS[x && x.motivo] || 'recusado') + '</li>';
+        }).join('');
+        var total = Number(ei.totalErros) || (ei.erros || []).length, resto = total - Math.min(5, (ei.erros || []).length);
+        return '<div class="ajc-erro" role="alert" data-testid="erro-envio"><div>Alguns valores foram recusados</div>' +
+          (lista ? '<ul class="ajc-erro-lista">' + lista + '</ul>' : '') +
+          (resto > 0 ? '<div class="ajc-erro-mais">e mais ' + resto + '</div>' : '') + '<div class="ajc-erro-salvo">' + SALVOS + '</div></div>';
+      }
+      var msg = ei.codigo && ei.msg ? ei.msg + ' ' + SALVOS : 'Não enviou. ' + SALVOS;
+      return '<div class="ajc-erro" role="alert" data-testid="erro-envio">' + esc(msg) + '</div>';
+    }
+    function htmlFolha() {
+      var g = geral();
+      return '<h2 class="ajc-sheet-titulo" id="ajc-sheet-t">Transmitir ' + plural(g.aEnviar, 'valor', 'valores') + ' de ' + plural(g.setoresComEnvio, 'setor', 'setores') + '?</h2>' +
+        '<p class="ajc-sheet-texto">Só o que mudou é enviado.</p>' +
+        htmlErroEnvio() +
+        (S.erroEnvio && semNovaTentativa() ? '' :
+          '<button type="button" class="ajc-btn-primario" data-act="confirmar-envio" data-testid="confirmar-envio"' + (S.enviando ? ' disabled' : '') + '>' +
+          (S.enviando ? 'Enviando…' : S.erroEnvio ? 'Tentar de novo' : 'Transmitir agora') + '</button>') +
+        '<button type="button" class="ajc-btn-sec" data-act="cancelar-envio" data-testid="cancelar-envio"' + (S.enviando ? ' disabled' : '') + '>Voltar</button>';
+    }
+    function abrirFolha() {
+      if (S.folha || !geral().aEnviar) return;
+      ajustarLote();
+      S.folha = true; S.erroEnvio = false; S.erroInfo = null;
+      ultimoFoco = document.activeElement;
+      var f = document.createElement('div');
+      f.className = 'ajc-sheet-fundo';
+      f.innerHTML = '<div class="ajc-sheet" role="dialog" aria-modal="true" aria-labelledby="ajc-sheet-t" tabindex="-1" data-testid="folha">' + htmlFolha() + '</div>';
+      rootEl.appendChild(f);
+      $('.ajc-sheet', f).focus();
+    }
+    function atualizarFolha() {
+      var sh = $('.ajc-sheet');
+      if (!sh) return;
+      sh.innerHTML = htmlFolha();
+      var p = $('.ajc-btn-primario', sh);
+      if (S.enviando || !p) sh.focus(); else p.focus();
+    }
+    function fecharFolha() {
+      if (S.enviando) return;
+      var f = $('.ajc-sheet-fundo');
+      if (f) f.parentNode.removeChild(f);
+      S.folha = false; S.erroEnvio = false; S.erroInfo = null;
+      var b = $('[data-testid="btn-transmitir"]');
+      if (b && !b.disabled) b.focus(); else if (ultimoFoco && ultimoFoco.focus && document.body.contains(ultimoFoco)) ultimoFoco.focus();
+    }
+    function toast(texto) {
+      var velho = $('.ajc-toast');
+      if (velho) velho.parentNode.removeChild(velho);
+      var t = document.createElement('div');
+      t.className = 'ajc-toast'; t.setAttribute('role', 'status'); t.setAttribute('data-testid', 'toast'); t.textContent = texto;
+      rootEl.appendChild(t);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        t.classList.add('ajc-toast-saindo');
+        toastTimer = setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 300);
+      }, 3700);
+    }
+    function acessoNegado(err) {
+      try { container.dispatchEvent(new CustomEvent('ajc:acesso-negado', { detail: { codigo: err.codigo, mensagem: err.message } })); } catch (e) { /* ignora */ }
+    }
+    function ehAcesso(err) { return !!err && (err.codigo === 'ACESSO_NEGADO' || err.codigo === 'BLOQUEADO'); }
+    /* REGRA DO LOTE: o servidor recusa o mesmo lote com conteúdo diferente (LOTE_REUTILIZADO). Se o conteúdo atual
+       difere da última tentativa que FALHOU, o lote é novo; se for igual, reutiliza (retry idempotente). */
+    function ajustarLote() {
+      if (!S.assinFalha) return;
+      var atual = AJC.assinaturaItens(AJC.montarPayload('', '', S.rascunho, '').itens);
+      if (atual !== S.assinFalha) { S.lote = AJC.novoLote(); S.assinFalha = null; persistir(); }
+    }
+    function transmitir() {
+      if (S.enviando || destruido) return;
+      ajustarLote();
+      var payload = AJC.montarPayload(S.dados.quinzena.id, S.dados.coordenador.setor, S.rascunho, S.lote);
+      if (!payload.itens.length) return;
+      var assin = AJC.assinaturaItens(payload.itens);
+      S.enviando = true; S.erroEnvio = false; S.erroInfo = null;
+      atualizarFolha();
+      var p;
+      try { p = Promise.resolve(fonte.transmitir(payload)); } catch (e) { p = Promise.reject(e); }
+      p.then(function (res) {
+        if (res && res.ok === false) throw new Error('recusado');
+        if (destruido) return;
+        var r = AJC.aplicarEnvio(S.dados.setores, S.rascunho, payload.itens);
+        S.dados = Object.assign({}, S.dados, { setores: r.setores });
+        S.rascunho = r.rascunho;
+        S.lote = AJC.novoLote(); S.assinFalha = null;
+        S.enviando = false;
+        persistir();
+        var f = $('.ajc-sheet-fundo');
+        if (f) f.parentNode.removeChild(f);
+        S.folha = false;
+        S.view = 'lista'; S.setorAtual = null;
+        render({ topo: true });
+        toast('Enviado ✓ às ' + hhmm(Date.now()));
+        dispararResumo();
+        var b = $('[data-testid="btn-transmitir"]');
+        if (b && !b.disabled) b.focus();
+      }).catch(function (err) {
+        if (destruido) return;
+        S.enviando = false; S.erroEnvio = true;
+        S.erroInfo = err && err.codigo ? { codigo: err.codigo, msg: err.message, erros: err.erros, totalErros: err.totalErros } : null;
+        if (err && err.codigo === 'LOTE_REUTILIZADO') { S.lote = AJC.novoLote(); S.assinFalha = null; }   // próximo "Tentar de novo" já vai com lote novo
+        else S.assinFalha = assin;                                                                           // lembra o que falhou
+        persistir();
+        atualizarFolha();
+        if (ehAcesso(err)) acessoNegado(err);
+      });
+    }
+
+    /* ---------- carga ---------- */
+    function aplicarDados(d, primeira) {
+      S.dados = d;
+      if (primeira) { restaurar(); S.filtro = filtroPadrao(); }
+      else podar();
+      if (S.view === 'setor' && !setorPorCodigo(S.setorAtual)) { S.view = 'lista'; S.setorAtual = null; }
+    }
+    function carregar(primeira) {
+      var p;
+      try { p = Promise.resolve(fonte.carregar()); } catch (e) { p = Promise.reject(e); }
+      return p.then(function (d) {
+        if (destruido) return;
+        aplicarDados(d, primeira);
+        if (!primeira) persistir();
+        var foco = document.activeElement, eraInput = foco && foco.classList && foco.classList.contains('ajc-input');
+        if (!eraInput) render();
+        else render();
+        dispararResumo();
+      }).catch(function (err) {
+        if (destruido) return;
+        if (ehAcesso(err)) { acessoNegado(err); return; }       // o shell mostra a entrada de novo
+        var msg = err && err.codigo && err.message ? err.message : '';
+        if (primeira) renderErroCarga(msg); else toast(msg || 'Não foi possível atualizar.');
+      });
+    }
+
+    /* ---------- eventos ---------- */
+    function onClick(ev) {
+      var b = ev.target.closest ? ev.target.closest('[data-act]') : null;
+      if (!b || !rootEl.contains(b) || b.disabled) return;
+      var act = b.getAttribute('data-act');
+      if (act === 'abrir') {
+        S.setorAtual = b.getAttribute('data-setor'); S.view = 'setor'; S.completo = false;
+        render({ topo: true });
+      } else if (act === 'voltar') {
+        S.view = 'lista'; S.setorAtual = null; S.completo = false;
+        render({ topo: true });
+      } else if (act === 'filtro') {
+        S.filtro = b.getAttribute('data-filtro');
+        render();
+        var nb = $('[data-testid="filtro-' + S.filtro + '"]'); if (nb) nb.focus();
+      } else if (act === 'expandir') {
+        var idx = b.getAttribute('data-id'), ab = !S.abertos[idx], elx = acharTrecho(idx);
+        if (ab) S.abertos[idx] = true; else delete S.abertos[idx];
+        b.setAttribute('aria-expanded', String(ab));
+        if (elx) elx.classList.toggle('aberto', ab);
+      } else if (act === 'ok') {
+        var t = trechoPorId(b.getAttribute('data-id')), el = acharTrecho(b.getAttribute('data-id'));
+        if (t && el) {
+          S.rascunho = AJC.definirValor(S.rascunho, t, t.valor).rascunho;
+          atualizarTrecho(el, t, true);
+          mudou();
+        }
+      } else if (act === 'confirmar-todos') {
+        var s = setorPorCodigo(S.setorAtual);
+        if (!s) return;
+        S.rascunho = AJC.confirmarSugeridos(s, S.rascunho);
+        s.trechos.forEach(function (tr) { var e2 = acharTrecho(tr.id); if (e2) atualizarTrecho(e2, tr, false); });
+        mudou();
+      } else if (act === 'transmitir') {
+        abrirFolha();
+      } else if (act === 'confirmar-envio') {
+        transmitir();
+      } else if (act === 'cancelar-envio') {
+        fecharFolha();
+      } else if (act === 'atualizar') {
+        recarregar();
+      }
+    }
+    function onFundo(ev) {
+      if (ev.target.classList && ev.target.classList.contains('ajc-sheet-fundo')) fecharFolha();
+    }
+    function onInput(ev) {
+      var i = ev.target;
+      if (i.classList && i.classList.contains('ajc-busca')) {
+        S.busca = i.value;
+        var L = $('.ajc-lista'); if (L) L.innerHTML = htmlItens();
+        return;
+      }
+      if (!i.classList || !i.classList.contains('ajc-input')) return;
+      var el = acharTrecho(i.getAttribute('data-id')), m = el && $('.ajc-msg', el);
+      if (m) m.parentNode.removeChild(m);
+    }
+    function onFocusOut(ev) {
+      var i = ev.target;
+      if (!i.classList || !i.classList.contains('ajc-input') || destruido) return;
+      salvarCampo(i, false);
+    }
+    function onKeydown(ev) {
+      var i = ev.target;
+      if (ev.key === 'Escape' && S.folha) { if (!S.enviando) { ev.preventDefault(); fecharFolha(); } return; }
+      if (ev.key === 'Tab' && S.folha) {                 // mantém o foco dentro da folha
+        var bs = $$('.ajc-sheet button:not([disabled])');
+        if (!bs.length) { ev.preventDefault(); return; }
+        var first = bs[0], last = bs[bs.length - 1];
+        if (ev.shiftKey && (document.activeElement === first || document.activeElement === $('.ajc-sheet'))) { ev.preventDefault(); last.focus(); }
+        else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+        return;
+      }
+      if (ev.key === 'Enter' && i.classList && i.classList.contains('ajc-busca')) { ev.preventDefault(); i.blur(); return; }
+      if (ev.key === 'Enter' && i.classList && i.classList.contains('ajc-input')) {
+        ev.preventDefault();
+        if (salvarCampo(i, true)) avancar(i);
+      }
+    }
+
+    rootEl.addEventListener('click', onClick);
+    rootEl.addEventListener('click', onFundo);
+    rootEl.addEventListener('input', onInput);
+    rootEl.addEventListener('focusout', onFocusOut);
+    rootEl.addEventListener('keydown', onKeydown);
+
+    function recarregar() { return carregar(false); }
+    function destruir() {
+      destruido = true;
+      clearTimeout(toastTimer);
+      rootEl.removeEventListener('click', onClick);
+      rootEl.removeEventListener('click', onFundo);
+      rootEl.removeEventListener('input', onInput);
+      rootEl.removeEventListener('focusout', onFocusOut);
+      rootEl.removeEventListener('keydown', onKeydown);
+      if (rootEl.parentNode) rootEl.parentNode.removeChild(rootEl);
+    }
+
+    render();
+    carregar(true);
+    return { destruir: destruir, recarregar: recarregar };
+  }
+
+  root.AJC_UI = { montar: montar };
+})(typeof window !== 'undefined' ? window : this);
+
+</script>
+<script>
+/* ajc_rota86.js — cola entre o app ROTA 86 e a tela de VT por trecho (módulo app-web/ajc/).
+   Só entra no app quando a flag está ligada no build (ver LEIA-ME.md). Depende de window.AJC (ajc_logica.js),
+   window.AJC_FONTE_HTTP (fonte_http.js), window.AJC_UI (ajc_ui.js) e window.AJC_CONFIG ({ativo, endpoint}).
+   Expõe window.ROTA86_AJC = { cardPerfil(acesso), abrir(raiz), limparAcesso() }.
+   Nunca lança para o app: qualquer falha vira um aviso dentro da própria tela de VT. */
+(function (root) {
+  'use strict';
+
+  var CHAVE_ACESSO = 'rota86_ajc_vt_acesso';
+  var CFG = root.AJC_CONFIG || {};
+  var ENDPOINT = typeof CFG.endpoint === 'string' ? CFG.endpoint : '';
+  var MSG_INVALIDO = 'Setor ou código inválido.';
+  var PERFIS = { 'Coordenador': 1, 'Coordenador Líder': 1 };   // quem vê o card (o endpoint ainda exige setor + código)
+
+  var ui = null, raiz = null, ligado = false, resumo = null;
+
+  function $(id) { return root.document.getElementById(id); }
+  function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  /* ---------- acesso guardado neste aparelho ---------- */
+  function lerAcesso() {
+    try {
+      var o = JSON.parse(root.localStorage.getItem(CHAVE_ACESSO) || 'null');
+      if (o && typeof o.coordenador === 'string' && typeof o.codigo === 'string' && o.coordenador && o.codigo) return o;
+    } catch (e) { /* sem acesso guardado */ }
+    return null;
+  }
+  function gravarAcesso(c, k) { try { root.localStorage.setItem(CHAVE_ACESSO, JSON.stringify({ coordenador: c, codigo: k })); } catch (e) { /* segue sem guardar */ } }
+  function apagarAcesso() { try { root.localStorage.removeItem(CHAVE_ACESSO); } catch (e) { /* ignora */ } }
+
+  /* ---------- card no Perfil ---------- */
+  function textoPilula() {
+    if (resumo === null || !isFinite(resumo)) return { t: '—', ok: false };
+    if (resumo <= 0) return { t: 'Tudo pronto', ok: true };
+    return { t: resumo + (resumo === 1 ? ' falta' : ' faltam'), ok: false };
+  }
+  function cardPerfil(acesso) {
+    if (!ligado || !acesso || !PERFIS[acesso.perfil]) return '';
+    var p = textoPilula();
+    return '<button type="button" class="profile-feature" data-act="ir-vt" data-testid="card-vt" style="margin-top:10px">' +
+      '<span class="feature-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18l-3-2-2.5 2-2.5-2-2.5 2-2.5-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>' +
+      '<span class="feature-main"><b>Ajuda de custo · VT da quinzena</b><span>Informe a tarifa de cada trecho.</span></span>' +
+      '<span class="ajc-pilula' + (p.ok ? ' ok' : '') + '" id="ajcPilula" data-testid="pilula-faltam" aria-live="polite">' + esc(p.t) + '</span>' +
+      '<span class="feature-go" aria-hidden="true">›</span></button>' +
+      (lerAcesso() ? '<button type="button" class="ajc-link-aparelho" id="ajcSair" data-testid="sair-aparelho">Sair deste aparelho</button>' : '');
+  }
+  function sairDoAparelho() {
+    apagarAcesso();
+    soltarUI();
+    if (raiz) raiz.textContent = '';                      // a próxima abertura volta para a entrada por setor + código
+    if (typeof root.renderPerfil === 'function') { try { root.renderPerfil(); } catch (e) { /* o app redesenha na próxima visita */ } }
+  }
+  function pintarPilula() {
+    var el = $('ajcPilula');
+    if (!el) return;
+    var p = textoPilula();
+    el.textContent = p.t;
+    el.classList.toggle('ok', p.ok);
+  }
+
+  /* ---------- tela ---------- */
+  function aviso(texto) {
+    raiz.textContent = '';
+    var p = root.document.createElement('p');
+    p.className = 'ajc-shell-aviso';
+    p.textContent = texto;
+    raiz.appendChild(p);
+  }
+  function montarUI(fonte) {
+    if (!root.AJC_UI || typeof root.AJC_UI.montar !== 'function') { aviso('Tela de VT indisponível neste aparelho.'); return null; }
+    try { return root.AJC_UI.montar(raiz, fonte); } catch (e) { aviso('Não foi possível abrir a tela de VT.'); return null; }
+  }
+  function soltarUI() {
+    if (ui && ui.destruir) { try { ui.destruir(); } catch (e) { /* ignora */ } }
+    ui = null; resumo = null; pintarPilula();
+  }
+
+  function mostrarEntrada(msg, setor, focar) {
+    raiz.textContent = '';
+    resumo = null; pintarPilula();
+    var f = root.document.createElement('form');
+    f.className = 'ajc-entrada';
+    f.setAttribute('data-testid', 'entrada');
+    f.setAttribute('novalidate', '');
+    f.innerHTML = '<h2 class="ajc-entrada-titulo">Entrar</h2>' +
+      '<p class="ajc-entrada-texto">Use o setor e o código que o BKO enviou para você.</p>' +
+      '<label for="entSetor">Seu setor de coordenação</label>' +
+      '<input id="entSetor" name="setor" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" data-testid="entrada-setor">' +
+      '<label for="entCodigo">Código de acesso</label>' +
+      '<input id="entCodigo" name="codigo" type="text" maxlength="6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" data-testid="entrada-codigo" aria-describedby="entErro">' +
+      '<p class="ajc-entrada-erro" id="entErro" role="alert" data-testid="entrada-erro"></p>' +
+      '<button type="submit" class="ajc-btn-entrar" data-testid="entrar">Entrar</button>';
+    raiz.appendChild(f);
+    var iSetor = f.elements.setor, iCod = f.elements.codigo, erro = f.querySelector('.ajc-entrada-erro'), btn = f.querySelector('button');
+    iSetor.value = setor || '';
+    erro.textContent = msg || '';
+    iCod.addEventListener('input', function () { iCod.value = iCod.value.replace(/\s+/g, ''); });
+    f.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var coord = iSetor.value.trim(), cod = iCod.value.replace(/\s+/g, '');
+      if (!coord || cod.length !== 6) { erro.textContent = MSG_INVALIDO; (coord ? iCod : iSetor).focus(); return; }
+      erro.textContent = '';
+      btn.disabled = true; btn.textContent = 'Entrando…';
+      conectar(coord, cod).then(function () { /* montou a lista */ }, function (err) {
+        btn.disabled = false; btn.textContent = 'Entrar';
+        erro.textContent = (err && err.message) || 'Não foi possível entrar. Tente de novo.';
+        iCod.value = ''; iCod.focus();
+      });
+    });
+    if (focar) (setor ? iCod : iSetor).focus();
+  }
+
+  /* Carrega uma vez para validar o acesso; se der certo, guarda e monta a tela já com esses dados. */
+  function conectar(coord, cod) {
+    var fonte = root.AJC_FONTE_HTTP.criar({ url: ENDPOINT, coordenador: coord, codigo: cod });
+    return fonte.carregar().then(function (dados) {
+      gravarAcesso(coord, cod);
+      var primeiro = true;
+      var envolta = {
+        carregar: function () { if (primeiro) { primeiro = false; return Promise.resolve(dados); } return fonte.carregar(); },
+        transmitir: function (p) { return fonte.transmitir(p); }
+      };
+      soltarUI();
+      ui = montarUI(envolta);
+    });
+  }
+
+  function abrir(el) {
+    if (!ligado) return;
+    if (raiz === el && (ui || el.firstChild)) return;      // já montada: preserva o estado (rascunho, fila) ao voltar do Perfil
+    raiz = el;
+    var ac = lerAcesso();
+    if (!ac) { mostrarEntrada('', '', false); return; }
+    raiz.textContent = 'Carregando…';
+    conectar(ac.coordenador, ac.codigo).catch(function (err) {
+      var c = err && err.codigo;
+      if (c === 'ACESSO_NEGADO') { apagarAcesso(); mostrarEntrada(err.message, ac.coordenador, false); }
+      else if (c === 'BLOQUEADO' || c === 'SEM_QUINZENA_ABERTA') mostrarEntrada(err.message, ac.coordenador, false);
+      else {                                   // sem rede etc.: abre a tela, que mostra o erro e oferece "Tentar de novo"
+        ui = montarUI(root.AJC_FONTE_HTTP.criar({ url: ENDPOINT, coordenador: ac.coordenador, codigo: ac.codigo }));
+      }
+    });
+  }
+
+  // A flag vale desde já (o Perfil pode ser desenhado antes do DOMContentLoaded); os ouvintes entram quando a view existir.
+  ligado = CFG.ativo === true && !!ENDPOINT && !!root.AJC_FONTE_HTTP;
+
+  function iniciar() {
+    if (!ligado) return;
+    var r = $('ajcRaiz');
+    if (!r) return;
+    r.addEventListener('ajc:resumo', function (ev) {
+      resumo = ev && ev.detail ? (ev.detail.setores - ev.detail.prontos) : null;
+      pintarPilula();
+    });
+    r.addEventListener('ajc:acesso-negado', function (ev) {
+      var d = (ev && ev.detail) || {};
+      var ac = lerAcesso();
+      if (d.codigo === 'ACESSO_NEGADO') apagarAcesso();
+      soltarUI();
+      mostrarEntrada(d.mensagem || MSG_INVALIDO, ac ? ac.coordenador : '', true);
+    });
+    root.document.addEventListener('click', function (ev) {
+      var b = ev.target && ev.target.closest ? ev.target.closest('#ajcSair') : null;
+      if (b) sairDoAparelho();
+    });
+    // "Sair do ROTA 86" também esquece o acesso do VT neste aparelho (aparelho compartilhado).
+    root.document.addEventListener('click', function (ev) {
+      if (ev.target && ev.target.id === 'btSair') apagarAcesso();
+    }, true);
+  }
+
+  root.ROTA86_AJC = { cardPerfil: cardPerfil, abrir: abrir, limparAcesso: apagarAcesso, _iniciar: iniciar };
+  if ($('ajcRaiz')) iniciar(); else root.document.addEventListener('DOMContentLoaded', iniciar);   // a view vem antes deste script no app
+})(typeof window !== 'undefined' ? window : this);
+
+</script>
 <script>
 "use strict";
 /* =========================================================================
@@ -1885,7 +3050,7 @@ function iniciaisNome(txt){
 const NOME_VIEW = {
   hoje:'Hoje', direcionamentos:'Direcionamentos', pontuacao:'Pontuação', equipe:'Equipe',
   redes:'Redes', lojas:'Lojas', mop:'MOP', calculadora:'Calculadora SOS', operacao:'Execução', perfil:'Perfil',
-  loja:'Loja', fechamentos:'Fechamentos', faq:'FAQ do ROTA 86', canal:'Análise'
+  loja:'Loja', fechamentos:'Fechamentos', faq:'FAQ do ROTA 86', canal:'Análise', vt:'VT da quinzena'
 };
 const ICONES = {
   hoje:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10.5V20h12v-9.5"/></svg>',
@@ -1898,7 +3063,7 @@ const ICONES = {
   operacao:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5 10 18 19 6.5"/></svg>',
   perfil:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.9-4 3.9-6 7.5-6s6.6 2 7.5 6"/></svg>'
 };
-const VIEWS = ['hoje','direcionamentos','pontuacao','equipe','redes','lojas','mop','calculadora','operacao','perfil','loja','fechamentos','faq','canal'];
+const VIEWS = ['hoje','direcionamentos','pontuacao','equipe','redes','lojas','mop','calculadora','operacao','perfil','loja','fechamentos','faq','canal','vt'];
 let rotaAtual = { v:'hoje', loja:null, origem:null };
 
 /* Cabeçalho por tela: saudação em Hoje (e na carteira do promotor), título
@@ -1923,6 +3088,7 @@ const APPBAR_INFO = {
   fechamentos: () => ({ who:'Histórico de fechamentos', sub:'Um mês por vez, com a análise pronta' }),
   faq: () => ({ who:'FAQ do ROTA 86', sub:'Como o app funciona e as regras de 77/86/100' }),
   canal: () => ({ who:'Análise', sub:'Canal, rede, categoria e KPI' }),
+  vt: () => ({ who:'VT da quinzena', sub:'Ajuda de custo · tarifa por trecho' }),
   loja: () => ({ who: rotaAtual.origem ? NOME_VIEW[rotaAtual.origem]||'Loja' : 'Loja', sub:'' })
 };
 function atualizarAppBar(v){
@@ -1945,6 +3111,7 @@ function montarTabbar(){
   atualizarPillDir();
 }
 function permitido(v){
+  if(v==='vt') return !!(window.ROTA86_AJC && ACESSO && (ACESSO.perfil==='Coordenador' || ACESSO.perfil==='Coordenador Líder'));
   if(PERM.promotor() && !['lojas','loja','mop','calculadora','perfil','fechamentos','faq'].includes(v)) return false;
   if(v==='operacao') return PERM.verOperacao();
   if(v==='direcionamentos') return PERM.verDirecionamentos();
@@ -1967,7 +3134,7 @@ function irPara(v, opts){
   const R = {
     hoje: renderHoje, direcionamentos: renderDirecionamentos, pontuacao: renderPontuacao,
     equipe: renderEquipe, redes: renderRedes, lojas: renderLojas, mop: renderMop, calculadora: renderCalculadoraSos, operacao: renderOperacao,
-    perfil: renderPerfil, fechamentos: renderFechamentos, faq: renderFaq, canal: renderCanalDash,
+    perfil: renderPerfil, fechamentos: renderFechamentos, faq: renderFaq, canal: renderCanalDash, vt: () => window.ROTA86_AJC.abrir($('ajcRaiz')),
     loja: () => renderLoja(rotaAtual.loja)
   };
   atualizarAppBar(v);
@@ -1986,7 +3153,7 @@ function falhaTela(v, e){
   console.error('ROTA 86 · falha ao renderizar', v, e);
   const alvo = { hoje:'hojeCorpo', direcionamentos:'dirCorpo', pontuacao:'pontCorpo', equipe:'equipeCorpo',
     redes:'redesCorpo', lojas:'lojasCorpo', mop:'mopCorpo', calculadora:'calculadoraCorpo', operacao:'operCorpo', perfil:'perfilCorpo',
-    loja:'lojaCorpo', fechamentos:'fechCorpo', faq:'faqCorpo', canal:'canalCorpo' }[v];
+    loja:'lojaCorpo', fechamentos:'fechCorpo', faq:'faqCorpo', canal:'canalCorpo', vt:'ajcRaiz' }[v];
   const el = alvo && $(alvo);
   if(el) el.innerHTML = `<div class="errbox"><b>Não foi possível montar esta tela</b>
     <span>A carga de dados não trouxe o que esta tela precisa. Detalhe técnico: ${esc(e && e.message)}</span>
@@ -6150,6 +7317,7 @@ function renderPerfil(){
       <button type="button" class="profile-feature" data-act="ir-fech"><span class="feature-ic" aria-hidden="true">↗</span><span class="feature-main"><b>Histórico de fechamentos</b><span>Compare os meses, com a análise de KPI, redes e setor prontos.</span></span><span class="feature-go" aria-hidden="true">›</span></button>
       <button type="button" class="profile-feature" data-act="essencia" style="margin-top:10px"><span class="feature-ic" aria-hidden="true">86</span><span class="feature-main"><b>A essência do ROTA 86</b><span>Por que o app existe e como ler a missão da loja.</span></span><span class="feature-go" aria-hidden="true">›</span></button>
       <button type="button" class="profile-feature" data-act="ir-faq" style="margin-top:10px"><span class="feature-ic" aria-hidden="true">?</span><span class="feature-main"><b>FAQ do ROTA 86</b><span>Como o app funciona e as regras de 77/86/100.</span></span><span class="feature-go" aria-hidden="true">›</span></button>
+      ${window.ROTA86_AJC ? window.ROTA86_AJC.cardPerfil(ACESSO) : ''}
     </div>
     <div class="card"><button type="button" class="btn dark block" id="btSair">Sair do ROTA 86</button></div>`;
 }
@@ -6535,6 +7703,7 @@ document.addEventListener('click', ev => {
       }
       case 'ir-fech': irPara('fechamentos', { origem:rotaAtual.v }); return;
       case 'ir-faq': irPara('faq', { origem:rotaAtual.v }); return;
+      case 'ir-vt': irPara('vt', { origem:rotaAtual.v }); return;
       case 'ir-canal': ana = { canal:el.dataset.idx!=null ? Number(el.dataset.idx) : null, rede:null, cat:null, kpi:null }; irPara('canal', { origem:rotaAtual.v }); return;
       case 'ver-todas-prioridades': abrirTodasPrioridades(); return;
       case 'ana': {
@@ -6706,6 +7875,9 @@ $('fechVoltar').addEventListener('click', () => {
 });
 $('faqVoltar').addEventListener('click', () => {
   if((history.state||{}).rota86) history.back(); else irPara(rotaAtual.origem || 'perfil',{push:false});
+});
+$('vtVoltar').addEventListener('click', () => {
+  if((history.state||{}).rota86) history.back(); else irPara('perfil',{push:false});
 });
 $('canalVoltar').addEventListener('click', () => {
   if((history.state||{}).rota86) history.back(); else irPara(rotaAtual.origem || 'pontuacao',{push:false});
