@@ -1245,6 +1245,97 @@ button.row:hover{background:#fafbfc;border-color:#d8dce3}
 .ajc .ajc-erro-mais,.ajc .ajc-erro-salvo{font-weight:500;font-size:12.5px;color:var(--ajc-mut)}
 .ajc .ajc-erro-salvo{margin-top:4px}
 
+/* ===== Apoio: abas VT | Apoio, lista por data, folha de lançamento ===== */
+.ajc .ajc-abas{display:flex;gap:4px;padding:6px var(--pad,16px) 0;border-bottom:1px solid var(--line,#ddd5c4);background:var(--paper,#f6f3ee)}
+.ajc .ajc-aba{flex:1;min-height:48px;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;background:transparent;font-size:15px;font-weight:500;color:var(--ajc-mut);padding:0 6px}
+.ajc .ajc-aba[aria-selected="true"]{color:var(--ink,#1c1917);font-weight:800;border-bottom-color:var(--ink,#1c1917)}
+.ajc .ajc-aba-n{font-variant-numeric:tabular-nums;color:var(--ink,#1c1917);font-weight:800}
+.ajc .ajc-view[data-view="apoio"]{padding-bottom:calc(var(--nav-total,92px) + 190px + env(safe-area-inset-bottom,0px))}
+.ajc .ajc-ap-total{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:10px}
+.ajc .ajc-ap-total-rot{font-size:13px;font-weight:600;color:var(--body,#57534e)}
+.ajc .ajc-ap-total b{font-size:22px;font-weight:800;color:var(--ink,#1c1917);font-variant-numeric:tabular-nums}
+.ajc .ajc-ap-aviso{margin:8px 0 0;font-size:13px;font-weight:700;color:var(--ink,#1c1917)}
+.ajc .ajc-ap-tentar{display:block;margin:0 auto;padding:0 18px}
+.ajc .ajc-ap-dia{margin-top:6px}
+.ajc .ajc-ap-dia-t{margin:14px 0 2px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ajc-mut)}
+.ajc .ajc-ap-item{border-bottom:1px solid var(--line-soft,#e9e4da)}
+.ajc .ajc-ap-linha{display:flex;align-items:stretch;gap:8px}
+.ajc .ajc-ap-corpo{display:block;flex:1;min-width:0;min-height:68px;margin:0;padding:12px 2px;border:0;background:transparent;text-align:left;color:inherit;border-radius:0}
+.ajc .ajc-ap-corpo:active{background:rgba(28,25,23,.04)}
+.ajc .ajc-ap-corpo:disabled{cursor:default}
+.ajc .ajc-ap-l1{display:flex;align-items:baseline;gap:8px;min-width:0}
+.ajc .ajc-ap-l1 .ajc-setor-cod{display:inline;flex:none;font-size:16px}
+.ajc .ajc-ap-prom{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:var(--ajc-mut)}
+.ajc .ajc-ap-ponto{display:flex;align-items:baseline;gap:8px;margin-top:3px;min-width:0}
+.ajc .ajc-ap-ponto .ajc-rotulo-dp{width:36px;padding-top:0}
+.ajc .ajc-ap-nome{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13.5px;font-weight:600;color:var(--ink,#1c1917)}
+.ajc .ajc-ap-motivo{display:block;margin-top:4px;font-size:12px;color:var(--ajc-mut)}
+.ajc .ajc-ap-env{font-weight:700;color:var(--ink,#1c1917)}
+.ajc .ajc-ap-lado{flex:none;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;padding:12px 0 2px}
+.ajc .ajc-ap-valor{font-size:15px;font-weight:800;color:var(--ink,#1c1917);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ajc .ajc-ap-x{min-width:44px;min-height:44px;border:0;background:transparent;color:var(--ajc-mut);font-size:16px;font-weight:700}
+.ajc .ajc-ap-confirma{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:2px 0 12px;font-size:13.5px;font-weight:700;color:var(--ink,#1c1917)}
+.ajc .ajc-ap-confirma span{flex:1 1 100%}
+.ajc .ajc-ap-confirma button{flex:1;min-height:46px;border-radius:var(--r-sm,13px);font-weight:800}
+.ajc .ajc-ap-conf-sim{border:0;background:var(--ink,#1c1917);color:#fff}
+.ajc .ajc-ap-conf-nao{border:1.5px solid var(--ink,#1c1917);background:transparent;color:var(--ink,#1c1917)}
+.ajc .ajc-ap-barra .ajc-btn-enviar{margin-bottom:8px}
+.ajc .ajc-ap-barra .ajc-salvo:empty{display:none}
+.ajc .ajc-ap-barra{padding-bottom:8px}
+.ajc .ajc-btn-lancar{display:block;width:100%;min-height:52px;border:1.5px solid var(--ink,#1c1917);border-radius:var(--r-md,18px);background:var(--ink,#1c1917);color:#fff;font-weight:800;font-size:16px}
+.ajc .ajc-btn-lancar.sec{background:transparent;color:var(--ink,#1c1917)}
+.ajc .ajc-btn-lancar:disabled,.ajc .ajc-btn-enviar:disabled{background:var(--line-soft,#e9e4da);border-color:var(--line-soft,#e9e4da);color:#6b655b;cursor:not-allowed}
+
+/* Folha de lançamento */
+.ajc .ajc-sheet-lanc{max-height:92vh;max-height:92dvh;overscroll-behavior:contain}
+.ajc .ajc-sheet-fundo[data-sheet]{overscroll-behavior:contain}
+.ajc .ajc-lanc-topo{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ajc .ajc-lanc-topo .ajc-sheet-titulo{flex:1;margin:0}
+.ajc .ajc-fechar{flex:none;min-width:44px;min-height:44px;margin-right:-8px;border:0;background:transparent;font-size:18px;font-weight:700;color:var(--ajc-mut)}
+.ajc .ajc-campo-bloco{margin:0 0 14px}
+.ajc .ajc-rot{margin:0 0 6px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ajc-mut)}
+.ajc .ajc-rot-2{margin-top:12px}
+.ajc .ajc-pick{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;padding:8px 12px;border:1.5px solid var(--ajc-borda);border-radius:var(--r-sm,13px);background:#fff;text-align:left;color:var(--ink,#1c1917)}
+.ajc .ajc-pick + .ajc-msg + .ajc-pick,.ajc .ajc-pick-loja + .ajc-msg + .ajc-pick-loja{margin-top:8px}
+.ajc .ajc-pick-val{display:flex;flex-direction:column;min-width:0;flex:1}
+.ajc .ajc-pick-val .ajc-setor-cod{font-size:16px}
+.ajc .ajc-pick-sub{font-size:12.5px;color:var(--ajc-mut)}
+.ajc .ajc-pick-vazio{flex:1;color:#756e63;font-weight:600}
+.ajc .ajc-pick-go{flex:none;font-size:22px;color:var(--ajc-mut)}
+.ajc .ajc-pick-loja .ajc-rotulo-dp{padding-top:0;width:38px}
+.ajc .ajc-seg{display:flex;gap:8px}
+.ajc .ajc-seg-b{flex:1;min-height:50px;border:1.5px solid var(--ajc-borda);border-radius:var(--r-sm,13px);background:#fff;font-weight:700;color:var(--ink,#1c1917)}
+.ajc .ajc-seg-b[aria-pressed="true"]{background:var(--ink,#1c1917);border-color:var(--ink,#1c1917);color:#fff}
+.ajc .ajc-data-linha{display:flex;align-items:center;gap:8px}
+.ajc .ajc-data-in{flex:1;min-width:0;min-height:50px;padding:0 12px;border:1.5px solid var(--ajc-borda);border-radius:var(--r-sm,13px);background:#fff;font-family:inherit;font-size:16px;font-weight:700;color:var(--ink,#1c1917)}
+.ajc .ajc-chip-data{flex:none;min-height:50px;padding:0 14px;border:1.5px solid var(--ink,#1c1917);border-radius:var(--r-sm,13px);background:transparent;font-weight:800;color:var(--ink,#1c1917)}
+.ajc .ajc-valor-linha{display:flex;align-items:center;gap:8px}
+.ajc .ajc-valor-in{width:130px;min-height:54px;padding:6px 12px;border:1.5px solid var(--ajc-borda);border-radius:var(--r-sm,13px);background:#fff;font-family:inherit;font-size:22px;font-weight:800;text-align:right;color:var(--ink,#1c1917);font-variant-numeric:tabular-nums;-webkit-appearance:none;appearance:none}
+.ajc .ajc-valor-in::placeholder{color:#756e63;font-weight:600}
+.ajc .ajc-valor-in:focus{outline:none;border:2px solid var(--ink,#1c1917);padding:5px 11px}
+.ajc .ajc-sug-leg{min-width:0;font-size:12px;font-weight:600;color:var(--ajc-mut)}
+.ajc .ajc-sug-leg:empty{display:none}
+.ajc .ajc-msg-erro{color:var(--crit,#c8342a)}
+.ajc .ajc-link{display:inline-block;min-height:44px;padding:0 4px;border:0;background:transparent;font-weight:800;text-decoration:underline;color:var(--crit,#c8342a)}
+.ajc .ajc-valor-in:focus-visible,.ajc .ajc-data-in:focus-visible,.ajc .ajc-pick:focus-visible{outline:3px solid var(--info,#1d3a5e);outline-offset:2px}
+
+/* Seletores dentro da folha */
+.ajc .ajc-pick-lista{margin-top:6px}
+.ajc .ajc-pick-item{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;width:100%;min-height:56px;padding:10px 4px;border:0;border-bottom:1px solid var(--line-soft,#e9e4da);background:transparent;text-align:left;color:var(--ink,#1c1917)}
+.ajc .ajc-pick-item:active{background:rgba(28,25,23,.04)}
+.ajc .ajc-pick-item:disabled{opacity:.5;cursor:default}
+.ajc .ajc-pick-item.atual::after{content:"\2713";margin-left:auto;color:var(--ok,#2f7a4d);font-weight:800}
+.ajc .ajc-pick-lj,.ajc .ajc-pick-casa{display:block}
+.ajc .ajc-pick-lj .ajc-nome,.ajc .ajc-pick-casa .ajc-nome{font-size:14.5px}
+.ajc .ajc-pick-lj.atual::after,.ajc .ajc-pick-casa.atual::after{content:none}
+.ajc .ajc-pick-lj.atual .ajc-nome::after,.ajc .ajc-pick-casa.atual .ajc-nome::after{content:" \2713";color:var(--ok,#2f7a4d)}
+.ajc .ajc-pick-dica{margin:10px 4px 2px;font-size:12px;font-weight:700;color:var(--ajc-mut)}
+.ajc .ajc-ap-semmes{margin:32px 0 16px}
+@media (max-width:359px){
+  .ajc .ajc-valor-in{width:116px}
+  .ajc .ajc-chip-data{padding:0 10px}
+}
+
 /* ---------- integração ROTA 86 (card do Perfil, entrada por setor + código, avisos) ---------- */
 .ajc-pilula{flex:0 0 auto;font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:999px;white-space:nowrap;background:var(--warn-soft,#faf0dd);color:var(--warn,#a8650f);border:1px solid var(--warn-line,#ecd9ad)}
 .ajc-pilula.ok{background:var(--ok-soft,#e6f2e9);color:var(--ok,#2f7a4d);border-color:#c9e3d2}
@@ -1478,9 +1569,201 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
 
   function novoLote() { return 'l' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
 
+
+  /* =====================================================================================================
+     APOIO (deslocamento fora do catálogo: loja fora da rota ou cobertura). Contrato: docs/servicos/apoio.md.
+     Tudo puro (sem DOM). Valores sempre em string '12.50' (2 casas) e somas em centavos inteiros.
+     Modelo do rascunho local: { local:{ [chave]: lançamento }, remover:{ [apoio_id]: true } }.
+     ===================================================================================================== */
+  var APOIO_AVISO_ALTO = 200;     // só aviso "confere?", NUNCA bloqueia (sem teto — decisão do Arthur, 04/11)
+  var APOIO_FATOR_AVISO = 3;      // aviso quando o valor passa de 3x o sugerido do par
+  var DIAS_SEMANA = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+  var MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+  var MOTIVOS_APOIO = { FORA_ROTA: 'Fora da rota', COBERTURA: 'Cobertura' };
+
+  /** Chave de duplicata local: setor|data|de|para|motivo|cobre_setor (cobre_setor vazio fora de COBERTURA). */
+  function chaveApoio(l) {
+    return [l.setor, l.data, l.de, l.para, l.motivo, l.motivo === 'COBERTURA' ? (l.cobre_setor || '') : ''].join('|');
+  }
+
+  /** Valor do Apoio: > 0, até 2 casas, vírgula ou ponto. NUNCA arredonda (dinheiro): mais de 2 casas é erro. */
+  function parseValorApoio(txt) {
+    var t = String(txt === undefined || txt === null ? '' : txt).replace(/R\$/gi, '').replace(/\s/g, '');
+    if (!t) return { ok: false, erro: 'vazio', msg: 'Informe o valor.' };
+    if (t.indexOf(',') !== -1) t = t.replace(/\./g, '').replace(',', '.');   // 1.234,50 -> 1234.50
+    if (!/^\d+(\.\d+)?$/.test(t) || t.split('.')[0].length > 7) return { ok: false, erro: 'inválido', msg: 'Valor inválido. Use números, ex.: 12,50' };
+    var partes = t.split('.');
+    if (partes[1] && partes[1].length > 2) return { ok: false, erro: 'casas', msg: 'Use no máximo 2 casas decimais.' };
+    var c = parseInt(partes[0], 10) * 100 + (partes[1] ? parseInt((partes[1] + '0').slice(0, 2), 10) : 0);
+    if (!(c > 0)) return { ok: false, erro: 'zero', msg: 'O valor precisa ser maior que zero.' };
+    return { ok: true, valor: fmtCentavos(c), centavos: c };
+  }
+  function fmtCentavos(c) { var s = String(Math.abs(c)); while (s.length < 3) s = '0' + s; return (c < 0 ? '-' : '') + s.slice(0, -2) + '.' + s.slice(-2); }
+  function centavosDe(v) { var n = parseValorApoio(v); return n.ok ? n.centavos : 0; }
+  /** '1234.5' -> 'R$ 1.234,50' */
+  function fmtMoeda(v) {
+    var c = centavosDe(v), s = fmtCentavos(c).split('.');
+    return 'R$ ' + s[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + s[1];
+  }
+  function somaApoio(lancs) {
+    var c = 0; (lancs || []).forEach(function (l) { c += centavosDe(l.valor); });
+    return fmtCentavos(c);
+  }
+
+  /** Último valor do par (de,para) no histórico; '' se não houver. Par é direcional. */
+  function sugestaoPar(sugestoes, de, para) {
+    var r = '';
+    (sugestoes || []).forEach(function (s) { if (s.de === de && s.para === para) { var n = parseValorApoio(s.valor); if (n.ok) r = n.valor; } });
+    return r;
+  }
+  /** Aviso (não bloqueio): > 3x o sugerido do par, ou valor muito alto. '' se está tudo normal. */
+  function avisoValorApoio(valor, sugerido) {
+    var n = parseValorApoio(valor);
+    if (!n.ok) return '';
+    var s = sugerido ? parseValorApoio(sugerido) : null;
+    if (s && s.ok && n.centavos > s.centavos * APOIO_FATOR_AVISO) return 'Bem acima do sugerido (' + fmtMoeda(s.valor) + ') — confere?';
+    if (n.centavos >= APOIO_AVISO_ALTO * 100) return 'Valor alto — confere?';
+    return '';
+  }
+
+  /* ---- datas ---- */
+  function dataValida(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+    if (!m) return false;
+    var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+    return d.getUTCFullYear() === +m[1] && d.getUTCMonth() === +m[2] - 1 && d.getUTCDate() === +m[3];
+  }
+  function mesDeData(iso) { return String(iso || '').slice(0, 7); }
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  /** Limites selecionáveis: do dia 1 do mês aberto até o menor entre hoje e o último dia. */
+  function limitesData(mesId, hoje) {
+    var m = /^(\d{4})-(\d{2})$/.exec(mesId || '');
+    if (!m) return { min: '', max: '' };
+    var ult = new Date(Date.UTC(+m[1], +m[2], 0)).getUTCDate(), fim = mesId + '-' + pad2(ult);
+    return { min: mesId + '-01', max: hoje && hoje < fim ? hoje : fim };
+  }
+  function diaSemana(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? DIAS_SEMANA[new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])).getUTCDay()] : ''; }
+  function addDias(iso, n) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); if (!m) return '';
+    var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3] + n));
+    return d.getUTCFullYear() + '-' + pad2(d.getUTCMonth() + 1) + '-' + pad2(d.getUTCDate());
+  }
+  function rotuloDia(iso, hoje) {
+    if (!dataValida(iso)) return '';
+    var dm = iso.slice(8, 10) + '/' + iso.slice(5, 7);
+    if (iso === hoje) return 'Hoje · ' + dm;
+    if (hoje && iso === addDias(hoje, -1)) return 'Ontem · ' + dm;
+    return diaSemana(iso) + ' · ' + dm;
+  }
+  function rotuloMes(mesId) {
+    var m = /^(\d{4})-(\d{2})$/.exec(mesId || '');
+    return m ? MESES[+m[2] - 1].charAt(0).toUpperCase() + MESES[+m[2] - 1].slice(1) + ' de ' + m[1] : '';
+  }
+
+  /** Valida um lançamento local. ctx = { setores:[códigos do coordenador], mesId, hoje }. -> { ok, erros:{campo:msg} } */
+  function validarLancamentoApoio(l, ctx) {
+    var e = {}, meus = ctx.setores || [];
+    if (!l.setor) e.setor = 'Escolha o promotor.';
+    else if (meus.indexOf(l.setor) === -1) e.setor = 'Setor fora da sua lista.';
+    if (l.motivo !== 'FORA_ROTA' && l.motivo !== 'COBERTURA') e.motivo = 'Escolha o motivo.';
+    else if (l.motivo === 'COBERTURA') {
+      if (!l.cobre_setor) e.cobre_setor = 'Escolha o setor coberto.';
+      else if (l.cobre_setor === l.setor) e.cobre_setor = 'O setor coberto precisa ser outro.';
+      else if (meus.indexOf(l.cobre_setor) === -1) e.cobre_setor = 'Setor fora da sua lista.';
+    }
+    var lim = limitesData(ctx.mesId, ctx.hoje);
+    if (!l.data || !dataValida(l.data)) e.data = 'Informe a data.';
+    else if (mesDeData(l.data) !== ctx.mesId || l.data < lim.min) e.data = 'Use uma data de ' + rotuloMes(ctx.mesId).replace(/ de \d+$/, '') + '.';
+    else if (l.data > lim.max) e.data = 'A data não pode ser no futuro.';
+    if (!l.de) e.de = 'Escolha o ponto de partida.';
+    if (!l.para) e.para = 'Escolha o destino.';
+    else if (l.de && l.de === l.para) e.para = 'De e Para não podem ser iguais.';
+    var v = parseValorApoio(l.valor);
+    if (!v.ok) e.valor = v.msg;
+    return { ok: Object.keys(e).length === 0, erros: e };
+  }
+
+  /** Agrupa por data (mais recente primeiro); dentro do dia, por setor (natural), depois de/para. */
+  function agruparPorData(lancs) {
+    var por = {};
+    (lancs || []).forEach(function (l) { (por[l.data] = por[l.data] || []).push(l); });
+    return Object.keys(por).sort().reverse().map(function (d) {
+      return { data: d, itens: por[d].slice().sort(function (a, b) { return cmpNatural(a.setor, b.setor) || String(a.de + a.para).localeCompare(String(b.de + b.para)); }) };
+    });
+  }
+
+  /** Lista efetiva (o que o coordenador vê): servidor sem os removidos, com as edições locais por cima, mais os novos.
+      estado: 'servidor' | 'editado' | 'novo'. Remover + relançar a mesma chave = edição (nunca remove de verdade). */
+  function efetivosApoio(servidor, rascunho) {
+    var local = (rascunho && rascunho.local) || {}, rem = (rascunho && rascunho.remover) || {}, vistos = {}, out = [];
+    (servidor || []).forEach(function (s) {
+      var k = chaveApoio(s), l = local[k];
+      vistos[k] = true;
+      if (l) { out.push(Object.assign({}, l, { apoio_id: s.apoio_id, versao: s.versao, estado: l.valor === s.valor ? 'servidor' : 'editado' })); }
+      else if (!rem[s.apoio_id]) out.push(Object.assign({}, s, { estado: 'servidor' }));
+    });
+    Object.keys(local).forEach(function (k) { if (!vistos[k]) out.push(Object.assign({}, local[k], { apoio_id: '', estado: 'novo' })); });
+    return out;
+  }
+
+  /** O que mudou em relação ao servidor: itens (novos e editados) + remover (apoio_id). */
+  function diffApoio(servidor, rascunho) {
+    var local = (rascunho && rascunho.local) || {}, rem = (rascunho && rascunho.remover) || {}, porChave = {}, itens = [], novos = 0, editados = 0;
+    (servidor || []).forEach(function (s) { porChave[chaveApoio(s)] = s; });
+    Object.keys(local).sort().forEach(function (k) {
+      var l = local[k], s = porChave[k];
+      if (s && s.valor === l.valor) return;                       // igual ao servidor: nada a enviar
+      var it = { data: l.data, setor: l.setor, motivo: l.motivo, de: l.de, para: l.para, valor: l.valor };
+      if (l.motivo === 'COBERTURA') it.cobre_setor = l.cobre_setor;
+      itens.push(it);
+      if (s) editados++; else novos++;
+    });
+    var remover = (servidor || []).filter(function (s) { return rem[s.apoio_id] && !local[chaveApoio(s)]; }).map(function (s) { return s.apoio_id; }).sort();
+    return { itens: itens, remover: remover, novos: novos, editados: editados, removidos: remover.length, total: itens.length + remover.length };
+  }
+
+  function montarPayloadApoio(mesId, coordenador, diff, lote) {
+    return { coordenador: coordenador, lote: lote, mes: mesId, itens: diff.itens, remover: diff.remover };
+  }
+  /** Hash simples do conteúdo (para decidir se o lote pode ser reutilizado). */
+  function assinaturaApoio(payload) {
+    var txt = (payload.itens || []).map(function (i) { return [i.setor, i.data, i.de, i.para, i.motivo, i.cobre_setor || '', i.valor].join('|'); }).sort().join('\n') +
+      '\n#\n' + (payload.remover || []).slice().sort().join('\n'), h = 5381, k;
+    for (k = 0; k < txt.length; k++) h = ((h * 33) ^ txt.charCodeAt(k)) >>> 0;
+    return ((payload.itens || []).length + (payload.remover || []).length) + ':' + h.toString(36);
+  }
+
+  /** Depois de recarregar do servidor: tira do rascunho o que não faz mais sentido (outro mês, id que sumiu, igual ao servidor). */
+  function podarApoio(rascunho, servidor, mesId) {
+    var ids = {}, chaves = {}, local = {}, rem = {};
+    (servidor || []).forEach(function (s) { ids[s.apoio_id] = true; chaves[chaveApoio(s)] = s; });
+    Object.keys((rascunho && rascunho.local) || {}).forEach(function (k) {
+      var l = rascunho.local[k];
+      if (l && mesDeData(l.data) === mesId && !(chaves[k] && chaves[k].valor === l.valor)) local[k] = l;
+    });
+    Object.keys((rascunho && rascunho.remover) || {}).forEach(function (id) { if (ids[id]) rem[id] = true; });
+    return { local: local, remover: rem };
+  }
+
+  /** Busca de lojas por nome/cidade (sem acento/caixa, todos os termos). Nome que começa com o termo, depois palavra que começa, depois contém. Limita o resultado. */
+  function buscarLojas(lojas, termo, limite) {
+    var q = semAcento(termo).split(/\s+/).filter(Boolean), out = [];
+    if (!q.length) return [];
+    (lojas || []).forEach(function (l) {
+      var nome = semAcento(l.nome), alvo = nome + ' ' + semAcento(l.detalhe);
+      if (q.every(function (t) { return alvo.indexOf(t) !== -1; })) out.push({ l: l, p: nome.indexOf(q[0]) === 0 ? 0 : (' ' + nome).indexOf(' ' + q[0]) !== -1 ? 1 : 2 });
+    });
+    out.sort(function (a, b) { return a.p - b.p || String(a.l.nome).localeCompare(String(b.l.nome)); });
+    return out.slice(0, limite || 30).map(function (x) { return x.l; });
+  }
+
   var API = { normalizarValor: normalizarValor, fmtBRL: fmtBRL, diasTexto: diasTexto, estadoEfetivo: estadoEfetivo, valorEfetivo: valorEfetivo,
     resumoSetor: resumoSetor, resumoGeral: resumoGeral, ordenar: ordenar, buscar: buscar, cmpNatural: cmpNatural, filtrar: filtrar, confirmarSugeridos: confirmarSugeridos,
-    definirValor: definirValor, montarPayload: montarPayload, aplicarEnvio: aplicarEnvio, assinaturaItens: assinaturaItens, novoLote: novoLote, AVISO_VALOR_ALTO: AVISO_VALOR_ALTO };
+    definirValor: definirValor, montarPayload: montarPayload, aplicarEnvio: aplicarEnvio, assinaturaItens: assinaturaItens, novoLote: novoLote, AVISO_VALOR_ALTO: AVISO_VALOR_ALTO,
+    chaveApoio: chaveApoio, parseValorApoio: parseValorApoio, fmtMoeda: fmtMoeda, somaApoio: somaApoio, sugestaoPar: sugestaoPar, avisoValorApoio: avisoValorApoio,
+    dataValida: dataValida, limitesData: limitesData, diaSemana: diaSemana, addDias: addDias, rotuloDia: rotuloDia, rotuloMes: rotuloMes, validarLancamentoApoio: validarLancamentoApoio,
+    agruparPorData: agruparPorData, efetivosApoio: efetivosApoio, diffApoio: diffApoio, montarPayloadApoio: montarPayloadApoio, assinaturaApoio: assinaturaApoio,
+    podarApoio: podarApoio, buscarLojas: buscarLojas, MOTIVOS_APOIO: MOTIVOS_APOIO, APOIO_AVISO_ALTO: APOIO_AVISO_ALTO };
   if (typeof module !== 'undefined' && module.exports) module.exports = API; else root.AJC = API;
 })(typeof window !== 'undefined' ? window : this);
 
@@ -1513,7 +1796,12 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
     ERRO_INTERNO: 'Erro no servidor. Tente de novo; se repetir, fale com o BKO.',
     TAMANHO_EXCEDIDO: 'Envio grande demais. Fale com o BKO.',
     ITENS_DEMAIS: 'Envio com valores demais. Fale com o BKO.',
-    CONTRATO_INVALIDO: 'Versão do app não é aceita. Atualize a página.'
+    CONTRATO_INVALIDO: 'Versão do app não é aceita. Atualize a página.',
+    MES_FECHADO: 'O mês de Apoio foi fechado pelo BKO.',
+    SEM_MES_ABERTO: 'Apoio fechado — o BKO ainda não abriu o mês.',
+    ACAO_INVALIDA: 'Versão do app não é aceita. Atualize a página.',
+    ITENS_VAZIO: 'Nada para enviar.',
+    MES_INVALIDO: 'Mês inválido. Atualize a tela.'
   };
   var PADRAO = 'Não foi possível concluir. Tente de novo.';
 
@@ -1578,7 +1866,19 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
         corpo.coordenador = coordenador;
         if (!corpo.codigo) corpo.codigo = codigo;
         return chamar(corpo);
-      }
+      },
+      /* Apoio (docs/servicos/apoio.md): mesma URL, mesmo acesso setor + código. */
+      carregarApoio: function () {
+        return chamar({ acao: 'apoio_carregar', coordenador: coordenador, codigo: codigo });
+      },
+      transmitirApoio: function (payload) {
+        var corpo = Object.assign({}, payload || {});
+        corpo.acao = 'apoio_transmitir';
+        corpo.coordenador = coordenador;
+        if (!corpo.codigo) corpo.codigo = codigo;
+        return chamar(corpo);
+      },
+      coordenador: coordenador
     };
   }
 
@@ -1623,7 +1923,7 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
   function montar(container, fonte, opcoes) {
     opcoes = opcoes || {};
     var S = {
-      dados: null, rascunho: {}, lote: AJC.novoLote(), filtro: 'todos', busca: '', view: 'lista', setorAtual: null,
+      dados: null, rascunho: {}, lote: AJC.novoLote(), filtro: 'todos', busca: '', aba: 'vt', view: 'lista', setorAtual: null,
       enviando: false, erroEnvio: false, erroInfo: null, assinFalha: null, salvoEm: null, erroSalvar: false, folha: false, completo: false, abertos: {}
     };
     var destruido = false, toastTimer = null, ultimoFoco = null;
@@ -1631,6 +1931,9 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
     rootEl.className = 'ajc';
     container.innerHTML = '';
     container.appendChild(rootEl);
+    var slot = document.createElement('div');            // abas VT | Apoio (fica fora das views, que são trocadas a cada render)
+    slot.className = 'ajc-abas-slot';
+    rootEl.appendChild(slot);
 
     /* ---------- persistência ---------- */
     function storage() { try { return opcoes.storage || root.localStorage; } catch (e) { return null; } }
@@ -1809,15 +2112,18 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
       if (velho) velho.parentNode.removeChild(velho);
       var html;
       if (!S.dados) html = '<section class="ajc-view ajc-ativa" data-view="lista"><p class="ajc-vazio">Carregando…</p></section>';
+      else if (S.aba === 'apoio' && apoioOk) html = htmlApoio();
       else if (S.view === 'setor' && setorPorCodigo(S.setorAtual)) html = htmlSetor(setorPorCodigo(S.setorAtual));
       else { S.view = 'lista'; html = htmlLista(); }
-      rootEl.insertAdjacentHTML('afterbegin', html);
+      slot.innerHTML = htmlAbas();
+      slot.insertAdjacentHTML('afterend', html);
       if (opts.topo) { try { container.scrollTop = 0; root.scrollTo(0, 0); } catch (e) { /* ignora */ } }
     }
     function renderErroCarga(msg) {
       var velho = $('.ajc-view');
       if (velho) velho.parentNode.removeChild(velho);
-      rootEl.insertAdjacentHTML('afterbegin', '<section class="ajc-view ajc-ativa" data-view="lista"><p class="ajc-vazio ajc-erro" role="alert">' + esc(msg || 'Não foi possível carregar os dados.') + '</p>' +
+      slot.innerHTML = '';
+      slot.insertAdjacentHTML('afterend', '<section class="ajc-view ajc-ativa" data-view="lista"><p class="ajc-vazio ajc-erro" role="alert">' + esc(msg || 'Não foi possível carregar os dados.') + '</p>' +
         '<button type="button" class="ajc-atualizar" data-act="atualizar" data-testid="atualizar">Tentar de novo</button></section>');
     }
 
@@ -2058,11 +2364,565 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
       });
     }
 
+    /* =====================================================================================================
+       APOIO — aba "Apoio" ao lado do VT (docs/servicos/apoio.md). Lançamentos do mês aberto, feitos pelo coordenador.
+       Rascunho em localStorage próprio (rota86_ajc_apoio_v1:<mes>:<coordenador>), lote idempotente como o VT. Sem setInterval.
+       ===================================================================================================== */
+    var apoioOk = typeof fonte.carregarApoio === 'function' && typeof fonte.transmitirApoio === 'function';
+    var AP = {
+      estado: 'nada',                     // nada | carregando | ok | erro | sem_mes
+      dados: null, lojaPorId: {}, setorPorCod: {}, rasc: { local: {}, remover: {} }, chaveRestaurada: '',
+      lote: AJC.novoLote(), assin: null, salvoEm: null, erroSalvar: false, msg: '',
+      sheet: null,                        // null | 'lanc' | 'envio'
+      F: null, removendo: '', enviando: false, erroEnvio: false, erroInfo: null, enviado: null, bloqueado: false, fechado: false
+    };
+    var apViewportFn = null;
+
+    function apCoord() { return (S.dados && S.dados.coordenador && S.dados.coordenador.setor) || fonte.coordenador || ''; }
+    function apChaveStorage() { return 'rota86_ajc_apoio_v1:' + AP.dados.mes.id + ':' + apCoord(); }
+    function apRestaurar() {
+      var k = apChaveStorage();
+      AP.rasc = { local: {}, remover: {} }; AP.lote = AJC.novoLote(); AP.assin = null; AP.salvoEm = null;
+      try {
+        var st = storage(), raw = st && st.getItem(k);
+        if (raw) {
+          var o = JSON.parse(raw);
+          if (o && typeof o === 'object') {
+            if (o.local && typeof o.local === 'object') AP.rasc.local = o.local;
+            if (o.remover && typeof o.remover === 'object') AP.rasc.remover = o.remover;
+            if (o.lote) AP.lote = o.lote;
+            if (typeof o.assin === 'string' && o.assin) AP.assin = o.assin;
+            if (o.salvoEm) AP.salvoEm = o.salvoEm;
+          }
+        }
+      } catch (e) { /* segue em memória */ }
+      AP.chaveRestaurada = k;
+      AP.rasc = AJC.podarApoio(AP.rasc, AP.dados.lancamentos, AP.dados.mes.id);
+    }
+    function apPersistir() {
+      try {
+        var st = storage();
+        if (!st) throw new Error('sem storage');
+        var vazio = !Object.keys(AP.rasc.local).length && !Object.keys(AP.rasc.remover).length;
+        if (vazio) { st.removeItem(apChaveStorage()); AP.salvoEm = null; }
+        else { AP.salvoEm = Date.now(); st.setItem(apChaveStorage(), JSON.stringify({ local: AP.rasc.local, remover: AP.rasc.remover, lote: AP.lote, assin: AP.assin || undefined, salvoEm: AP.salvoEm })); }
+        AP.erroSalvar = false;
+      } catch (e) { AP.erroSalvar = true; }
+    }
+    function apDiff() { return AJC.diffApoio(AP.dados ? AP.dados.lancamentos : [], AP.rasc); }
+    function apEfetivos() { return AJC.efetivosApoio(AP.dados ? AP.dados.lancamentos : [], AP.rasc); }
+    function apCtx() { return { setores: AP.dados.setores.map(function (s) { return s.setor; }), mesId: AP.dados.mes.id, hoje: AP.dados.hoje }; }
+    function apTextoSalvo() {
+      if (AP.erroSalvar) return 'Não foi possível salvar neste aparelho';
+      return 'Salvo neste aparelho' + (AP.salvoEm ? ' · ' + hhmm(AP.salvoEm) : '');
+    }
+    function apNomeLoja(id) { if (id === 'CASA') return 'Casa'; var l = AP.lojaPorId[id]; return l ? titulo(l.nome) : 'Loja não encontrada'; }
+    function apDetalheLoja(id) { var l = id !== 'CASA' && AP.lojaPorId[id]; return l ? titulo(l.detalhe) : ''; }
+    function apPromotor(cod) { var s = AP.setorPorCod[cod]; return s ? nomeCurto(s.promotor) : ''; }
+    function apEfetivoPorChave(k) { var r = null; apEfetivos().forEach(function (e) { if (AJC.chaveApoio(e) === k) r = e; }); return r; }
+    function apBloqueioEdicao() { return AP.fechado || AP.bloqueado; }
+
+    /* ---------- HTML: aba Apoio ---------- */
+    function htmlAbas() {
+      if (!apoioOk || !S.dados || S.view === 'setor') return '';
+      var n = AP.dados ? apDiff().total : 0;
+      return '<div class="ajc-abas" role="tablist" aria-label="Seção da ajuda de custo">' +
+        '<button type="button" role="tab" class="ajc-aba" data-act="aba" data-aba="vt" data-testid="aba-vt" aria-selected="' + (S.aba === 'vt') + '">VT</button>' +
+        '<button type="button" role="tab" class="ajc-aba" data-act="aba" data-aba="apoio" data-testid="aba-apoio" aria-selected="' + (S.aba === 'apoio') + '">Apoio' + (n ? ' <span class="ajc-aba-n">· ' + n + '</span>' : '') + '</button></div>';
+    }
+    function apHeader() {
+      var m = AP.dados.mes, ef = apEfetivos(), aberto = !AP.fechado;
+      var status = aberto ? 'Aberto' + (m.prazo ? ' · Prazo ' + ddmm(m.prazo) : '') : 'Fechado — só consulta';
+      return '<div class="ajc-hero ajc-ap-hero" data-testid="apoio-hero"><div class="ajc-hero-topo"><div class="ajc-hero-label" data-testid="apoio-mes">' + esc(AJC.rotuloMes(m.id) || m.rotulo) + '</div>' +
+        '<button type="button" class="ajc-atualizar" data-act="ap-atualizar" data-testid="apoio-atualizar" aria-label="Atualizar dados" title="Atualizar">↻</button></div>' +
+        '<div class="ajc-hero-prazo" data-testid="apoio-status">' + esc(status) + '</div>' +
+        '<div class="ajc-ap-total" data-testid="apoio-total"><span class="ajc-ap-total-rot">Total lançado</span><b>' + esc(AJC.fmtMoeda(AJC.somaApoio(ef))) + '</b></div>' +
+        '<div class="ajc-hero-count" data-testid="apoio-qtd">' + esc(plural(ef.length, 'lançamento', 'lançamentos')) + '</div></div>';
+    }
+    function apItem(e) {
+      var k = AJC.chaveApoio(e), conf = AP.removendo === k, trava = apBloqueioEdicao();
+      var motivo = e.motivo === 'COBERTURA' ? 'Cobertura de ' + esc(e.cobre_setor) + (apPromotor(e.cobre_setor) ? ' · ' + esc(apPromotor(e.cobre_setor)) : '') : 'Fora da rota';
+      var rot = esc(e.setor) + ', ' + esc(ddmm(e.data)) + ', ' + esc(apNomeLoja(e.de)) + ' para ' + esc(apNomeLoja(e.para)) + ', ' + esc(AJC.fmtMoeda(e.valor));
+      var corpo = '<span class="ajc-ap-l1"><span class="ajc-setor-cod">' + esc(e.setor) + '</span><span class="ajc-ap-prom">' + esc(apPromotor(e.setor)) + '</span></span>' +
+        '<span class="ajc-ap-ponto"><span class="ajc-rotulo-dp">DE</span><span class="ajc-ap-nome">' + esc(apNomeLoja(e.de)) + '</span></span>' +
+        '<span class="ajc-ap-ponto"><span class="ajc-rotulo-dp">PARA</span><span class="ajc-ap-nome">' + esc(apNomeLoja(e.para)) + '</span></span>' +
+        '<span class="ajc-ap-motivo">' + motivo + (e.estado !== 'servidor' ? ' <span class="ajc-ap-env">· a enviar</span>' : '') + '</span>';
+      return '<div class="ajc-ap-item' + (e.estado !== 'servidor' ? ' pendente' : '') + (conf ? ' removendo' : '') + '" data-testid="apoio-item" data-setor="' + esc(e.setor) + '" data-ap="' + esc(k) + '">' +
+        '<div class="ajc-ap-linha"><button type="button" class="ajc-ap-corpo" data-act="ap-editar" data-ap="' + esc(k) + '" aria-label="Editar apoio: ' + rot + '"' + (trava ? ' disabled' : '') + '>' + corpo + '</button>' +
+        '<div class="ajc-ap-lado"><span class="ajc-ap-valor">' + esc(AJC.fmtMoeda(e.valor)) + '</span>' +
+        (trava ? '' : '<button type="button" class="ajc-ap-x" data-act="ap-remover" data-ap="' + esc(k) + '" data-testid="apoio-remover" aria-label="Remover apoio: ' + rot + '">✕</button>') + '</div></div>' +
+        (conf ? '<div class="ajc-ap-confirma" role="group" aria-label="Confirmar remoção"><span>Remover este lançamento?</span>' +
+          '<button type="button" class="ajc-ap-conf-sim" data-act="ap-remover-sim" data-ap="' + esc(k) + '" data-testid="apoio-remover-sim">Remover</button>' +
+          '<button type="button" class="ajc-ap-conf-nao" data-act="ap-remover-nao" data-testid="apoio-remover-nao">Manter</button></div>' : '') + '</div>';
+    }
+    function apLista() {
+      var ef = apEfetivos();
+      if (!ef.length) return '<p class="ajc-vazio" data-testid="apoio-vazio">Nenhum apoio lançado neste mês.</p>';
+      return AJC.agruparPorData(ef).map(function (g) {
+        return '<section class="ajc-ap-dia" data-dia="' + esc(g.data) + '"><h3 class="ajc-ap-dia-t">' + esc(AJC.rotuloDia(g.data, AP.dados.hoje)) + '</h3>' + g.itens.map(apItem).join('') + '</section>';
+      }).join('');
+    }
+    function apBarra() {
+      var d = apDiff(), trava = apBloqueioEdicao();
+      return '<div class="ajc-enviar ajc-ap-barra" data-testid="apoio-barra">' +
+        (d.total && !AP.fechado ? '<button type="button" class="ajc-btn-enviar" data-act="ap-transmitir" data-testid="apoio-transmitir"' + (AP.bloqueado ? ' disabled' : '') + '>Transmitir ' + plural(d.total, 'lançamento', 'lançamentos') + '</button>' : '') +
+        (AP.fechado ? '' : '<button type="button" class="ajc-btn-lancar' + (d.total ? ' sec' : '') + '" data-act="ap-novo" data-testid="apoio-lancar"' + (trava ? ' disabled' : '') + '>+ Lançar apoio</button>') +
+        '<div class="ajc-salvo" data-testid="apoio-salvo">' + esc(d.total ? apTextoSalvo() : '') + '</div></div>';
+    }
+    function htmlApoio() {
+      var topo = '<section class="ajc-view ajc-ativa" data-view="apoio" data-testid="apoio">';
+      if (AP.estado === 'ok' && AP.dados) {
+        return topo + apHeader() + (AP.bloqueado ? '<p class="ajc-ap-aviso" role="status" data-testid="apoio-atualizar-aviso">Enviado ✓ Toque em ↻ para atualizar a lista.</p>' : '') +
+          '<div class="ajc-ap-lista" data-testid="apoio-lista">' + apLista() + '</div>' + apBarra() + '</section>';
+      }
+      if (AP.estado === 'sem_mes') {
+        return topo + '<p class="ajc-vazio ajc-ap-semmes" role="status" data-testid="apoio-sem-mes">Apoio fechado — o BKO ainda não abriu o mês.</p>' +
+          '<button type="button" class="ajc-atualizar ajc-ap-tentar" data-act="ap-atualizar" data-testid="apoio-atualizar">Verificar de novo</button></section>';
+      }
+      if (AP.estado === 'erro') {
+        return topo + '<p class="ajc-vazio ajc-erro" role="alert" data-testid="apoio-erro">' + esc(AP.msg || 'Não foi possível carregar o Apoio.') + '</p>' +
+          '<button type="button" class="ajc-atualizar ajc-ap-tentar" data-act="ap-atualizar" data-testid="apoio-atualizar">Tentar de novo</button></section>';
+      }
+      return topo + '<p class="ajc-vazio" data-testid="apoio-carregando">Carregando…</p></section>';
+    }
+    function apRender() {
+      if (S.aba !== 'apoio') { atualizarAbas(); return; }
+      render();
+    }
+    function atualizarAbas() { if (slot) slot.innerHTML = htmlAbas(); }
+
+    /* ---------- carga do Apoio ---------- */
+    function apAplicar(d) {
+      var m = d && d.mes || {};
+      AP.dados = { mes: { id: String(m.id || ''), rotulo: m.rotulo || '', status: m.status || '', prazo: m.prazo || '' }, hoje: String(d && d.hoje || ''),
+        setores: Array.isArray(d && d.setores) ? d.setores : [], lojas: Array.isArray(d && d.lojas) ? d.lojas : [],
+        lancamentos: Array.isArray(d && d.lancamentos) ? d.lancamentos : [], sugestoes: Array.isArray(d && d.sugestoes) ? d.sugestoes : [] };
+      AP.lojaPorId = {}; AP.dados.lojas.forEach(function (l) { AP.lojaPorId[l.id] = l; });
+      AP.setorPorCod = {}; AP.dados.setores.forEach(function (s) { AP.setorPorCod[s.setor] = s; });
+      AP.fechado = AP.dados.mes.status !== 'ABERTO';
+      AP.estado = 'ok'; AP.bloqueado = false; AP.removendo = '';
+      if (AP.chaveRestaurada !== apChaveStorage()) apRestaurar();
+      else { AP.rasc = AJC.podarApoio(AP.rasc, AP.dados.lancamentos, AP.dados.mes.id); apPersistir(); }
+    }
+    function apCarregar() {
+      if (!apoioOk) return Promise.resolve();
+      if (!AP.dados) { AP.estado = 'carregando'; apRender(); }
+      var p;
+      try { p = Promise.resolve(fonte.carregarApoio()); } catch (e) { p = Promise.reject(e); }
+      return p.then(function (d) {
+        if (destruido) return;
+        apAplicar(d);
+        apRender();
+      }).catch(function (err) {
+        if (destruido) return;
+        if (ehAcesso(err)) { acessoNegado(err); return; }
+        if (err && err.codigo === 'SEM_MES_ABERTO') { AP.estado = 'sem_mes'; AP.dados = null; AP.fechado = true; apRender(); return; }
+        var msg = err && err.codigo && err.message ? err.message : 'Não foi possível carregar o Apoio. Tente de novo.';
+        if (AP.dados) toast(msg); else { AP.estado = 'erro'; AP.msg = msg; apRender(); }
+      });
+    }
+
+    /* ---------- folha: lançar / editar ---------- */
+    function novaForm(orig) {
+      var hoje = AP.dados.hoje, lim = AJC.limitesData(AP.dados.mes.id, hoje);
+      var f = { orig: orig || null, tela: 'form', setor: '', motivo: '', cobre_setor: '', data: lim.max, de: '', para: '', valor: '', tocado: false, erros: {}, dup: '', busca: '' };
+      if (orig) { f.setor = orig.setor; f.motivo = orig.motivo; f.cobre_setor = orig.cobre_setor || ''; f.data = orig.data; f.de = orig.de; f.para = orig.para; f.valor = AJC.fmtBRL(orig.valor); f.tocado = true; }
+      return f;
+    }
+    function fSugestao() { return AP.F.de && AP.F.para ? AJC.sugestaoPar(AP.dados.sugestoes, AP.F.de, AP.F.para) : ''; }
+    function fAplicarSugestao() {
+      if (AP.F.tocado) return;
+      var s = fSugestao();
+      AP.F.valor = s ? AJC.fmtBRL(s) : '';
+    }
+    function fValorNum() { var n = AJC.parseValorApoio(AP.F.valor); return n.ok ? n.valor : ''; }
+    function htmlPickPromotor() {
+      var f = AP.F;
+      return '<button type="button" class="ajc-pick" data-act="ap-pick" data-qual="promotor" data-testid="lanc-promotor" aria-label="Promotor' + (f.setor ? ': ' + esc(f.setor) : '') + '">' +
+        (f.setor ? '<span class="ajc-pick-val"><span class="ajc-setor-cod">' + esc(f.setor) + '</span><span class="ajc-pick-sub">' + esc(apPromotor(f.setor)) + '</span></span>' : '<span class="ajc-pick-vazio">Escolher promotor</span>') +
+        '<span class="ajc-pick-go" aria-hidden="true">›</span></button>';
+    }
+    function htmlPickCobre() {
+      var f = AP.F;
+      return '<button type="button" class="ajc-pick" data-act="ap-pick" data-qual="cobre" data-testid="lanc-cobre" aria-label="Setor coberto' + (f.cobre_setor ? ': ' + esc(f.cobre_setor) : '') + '">' +
+        (f.cobre_setor ? '<span class="ajc-pick-val"><span class="ajc-setor-cod">' + esc(f.cobre_setor) + '</span><span class="ajc-pick-sub">' + esc(apPromotor(f.cobre_setor)) + '</span></span>' : '<span class="ajc-pick-vazio">Escolher o setor coberto</span>') +
+        '<span class="ajc-pick-go" aria-hidden="true">›</span></button>';
+    }
+    function htmlPickLoja(qual, rotulo, id) {
+      return '<button type="button" class="ajc-pick ajc-pick-loja" data-act="ap-pick" data-qual="' + qual + '" data-testid="lanc-' + qual + '" aria-label="' + rotulo + (id ? ': ' + esc(apNomeLoja(id)) : '') + '">' +
+        '<span class="ajc-rotulo-dp">' + rotulo.toUpperCase() + '</span>' +
+        (id ? '<span class="ajc-pick-val"><span class="ajc-nome">' + esc(apNomeLoja(id)) + '</span>' + (apDetalheLoja(id) ? '<span class="ajc-sub">' + esc(apDetalheLoja(id)) + '</span>' : '') + '</span>' : '<span class="ajc-pick-vazio">Escolher</span>') +
+        '<span class="ajc-pick-go" aria-hidden="true">›</span></button>';
+    }
+    function fErro(campo) { var m = AP.F.erros[campo]; return '<div class="ajc-msg ajc-msg-erro erro" data-erro="' + campo + '" role="alert">' + (m ? esc(m) : '') + '</div>'; }
+    function htmlValorExtras() {
+      var f = AP.F, sug = fSugestao(), v = fValorNum();
+      var leg = sug && v && v === sug ? 'sugerido' : sug ? 'histórico do par: ' + AJC.fmtMoeda(sug) : '';
+      var av = AJC.avisoValorApoio(f.valor, sug);
+      return { leg: leg, aviso: av };
+    }
+    function htmlLancForm() {
+      var f = AP.F, lim = AJC.limitesData(AP.dados.mes.id, AP.dados.hoje), ontem = AJC.addDias(AP.dados.hoje, -1), ex = htmlValorExtras();
+      var segBtn = function (m, rot) { return '<button type="button" class="ajc-seg-b" data-act="ap-motivo" data-motivo="' + m + '" data-testid="lanc-motivo-' + m + '" aria-pressed="' + (f.motivo === m) + '">' + rot + '</button>'; };
+      var dupMsg = f.dup ? '<div class="ajc-msg ajc-msg-erro erro" role="alert" data-testid="lanc-dup">Já existe um apoio igual — <button type="button" class="ajc-link" data-act="ap-editar-dup" data-testid="lanc-editar-dup">editar?</button></div>' : '';
+      return '<div class="ajc-lanc-topo"><h2 class="ajc-sheet-titulo" id="ajc-sheet-t">' + (f.orig ? 'Editar apoio' : 'Lançar apoio') + '</h2>' +
+        '<button type="button" class="ajc-fechar" data-act="ap-cancelar" data-testid="lanc-fechar" aria-label="Fechar">✕</button></div>' +
+        '<div class="ajc-campo-bloco"><div class="ajc-rot">Promotor</div>' + htmlPickPromotor() + fErro('setor') + '</div>' +
+        '<div class="ajc-campo-bloco"><div class="ajc-rot">Motivo</div><div class="ajc-seg" role="group" aria-label="Motivo">' + segBtn('FORA_ROTA', 'Fora da rota') + segBtn('COBERTURA', 'Cobertura') + '</div>' + fErro('motivo') +
+        (f.motivo === 'COBERTURA' ? '<div class="ajc-rot ajc-rot-2">Setor coberto</div>' + htmlPickCobre() + fErro('cobre_setor') : '') + '</div>' +
+        '<div class="ajc-campo-bloco"><div class="ajc-rot">Data</div><div class="ajc-data-linha"><input class="ajc-data-in" type="date" data-testid="lanc-data" aria-label="Data do apoio" min="' + esc(lim.min) + '" max="' + esc(lim.max) + '" value="' + esc(f.data) + '">' +
+        '<button type="button" class="ajc-chip-data" data-act="ap-data" data-data="' + esc(lim.max) + '" data-testid="lanc-hoje">' + (lim.max === AP.dados.hoje ? 'Hoje' : 'Último dia') + '</button>' +
+        (ontem >= lim.min && ontem <= lim.max ? '<button type="button" class="ajc-chip-data" data-act="ap-data" data-data="' + esc(ontem) + '" data-testid="lanc-ontem">Ontem</button>' : '') + '</div>' + fErro('data') + '</div>' +
+        '<div class="ajc-campo-bloco"><div class="ajc-rot">De e Para</div>' + htmlPickLoja('de', 'De', f.de) + fErro('de') + htmlPickLoja('para', 'Para', f.para) + fErro('para') + '</div>' +
+        '<div class="ajc-campo-bloco"><div class="ajc-rot">Valor</div><div class="ajc-valor-linha"><span class="ajc-rs">R$</span>' +
+        '<input class="ajc-valor-in" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" placeholder="0,00" value="' + esc(f.valor) + '" data-testid="lanc-valor" aria-label="Valor do apoio em reais">' +
+        '<span class="ajc-sug-leg" data-testid="lanc-sugerido">' + esc(ex.leg) + '</span></div>' +
+        '<div class="ajc-msg ajc-msg-aviso aviso" data-testid="lanc-aviso" role="status">' + esc(ex.aviso) + '</div>' + fErro('valor') + '</div>' + dupMsg +
+        '<button type="button" class="ajc-btn-primario" data-act="ap-salvar" data-testid="lanc-salvar">' + (f.orig ? 'Salvar alterações' : 'Salvar lançamento') + '</button>' +
+        '<button type="button" class="ajc-btn-sec" data-act="ap-cancelar" data-testid="lanc-cancelar">Cancelar</button>';
+    }
+    function apRecentes() {
+      var vistos = {}, ids = [];
+      apEfetivos().sort(function (a, b) { return a.data < b.data ? 1 : a.data > b.data ? -1 : 0; }).forEach(function (e) {
+        [e.para, e.de].forEach(function (id) { if (id && id !== 'CASA' && !vistos[id] && AP.lojaPorId[id]) { vistos[id] = true; ids.push(id); } });
+      });
+      return ids.slice(0, 5).map(function (id) { return AP.lojaPorId[id]; });
+    }
+    function htmlPickLista() {
+      var f = AP.F, t = f.tela, termo = f.busca;
+      if (t === 'p-promotor' || t === 'p-cobre') {
+        var lista = AJC.ordenar(AJC.buscar(AP.dados.setores, termo)).filter(function (s) { return t !== 'p-cobre' || s.setor !== f.setor; });
+        if (!lista.length) return '<p class="ajc-vazio">Nenhum setor encontrado.</p>';
+        var atual = t === 'p-promotor' ? f.setor : f.cobre_setor;
+        return lista.map(function (s) {
+          return '<button type="button" class="ajc-pick-item' + (s.setor === atual ? ' atual' : '') + '" data-act="ap-escolher" data-valor="' + esc(s.setor) + '" data-testid="pick-' + esc(s.setor) + '">' +
+            '<span class="ajc-setor-cod">' + esc(s.setor) + '</span><span class="ajc-setor-prom">' + esc(nomeCurto(s.promotor)) + '</span></button>';
+        }).join('');
+      }
+      var outro = t === 'p-de' ? f.para : f.de, atualL = t === 'p-de' ? f.de : f.para, lojas = [], dica = '';
+      var casaOff = outro === 'CASA';
+      var html = '<button type="button" class="ajc-pick-item ajc-pick-casa' + (atualL === 'CASA' ? ' atual' : '') + '" data-act="ap-escolher" data-valor="CASA" data-testid="pick-casa"' + (casaOff ? ' disabled' : '') + '>' +
+        '<span class="ajc-nome">Casa</span>' + (casaOff ? '<span class="ajc-sub">já é o outro lado</span>' : '') + '</button>';
+      if (termo.trim()) { lojas = AJC.buscarLojas(AP.dados.lojas, termo, 30); if (!lojas.length) dica = 'Nenhuma loja encontrada.'; }
+      else { lojas = apRecentes(); dica = lojas.length ? 'Usadas neste mês' : 'Digite o nome ou a cidade da loja.'; }
+      if (dica) html += '<p class="ajc-pick-dica">' + esc(dica) + '</p>';
+      return html + lojas.map(function (l) {
+        var off = l.id === outro;
+        return '<button type="button" class="ajc-pick-item ajc-pick-lj' + (l.id === atualL ? ' atual' : '') + '" data-act="ap-escolher" data-valor="' + esc(l.id) + '" data-testid="pick-loja"' + (off ? ' disabled' : '') + '>' +
+          '<span class="ajc-nome">' + esc(titulo(l.nome)) + '</span><span class="ajc-sub">' + esc(off ? 'já é o outro lado' : titulo(l.detalhe)) + '</span></button>';
+      }).join('');
+    }
+    function htmlLancPick() {
+      var t = AP.F.tela, nomes = { 'p-promotor': 'Promotor', 'p-cobre': 'Setor coberto', 'p-de': 'De', 'p-para': 'Para' }, loja = t === 'p-de' || t === 'p-para';
+      return '<div class="ajc-lanc-topo"><button type="button" class="ajc-voltar" data-act="ap-pick-voltar" data-testid="pick-voltar" aria-label="Voltar ao lançamento">←</button>' +
+        '<h2 class="ajc-sheet-titulo" id="ajc-sheet-t">' + nomes[t] + '</h2></div>' +
+        '<input class="ajc-busca ajc-pick-busca" type="search" data-testid="pick-busca" placeholder="' + (loja ? 'Buscar loja por nome ou cidade' : 'Buscar setor ou nome') + '" aria-label="' + (loja ? 'Buscar loja' : 'Buscar setor ou nome') + '" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false" value="' + esc(AP.F.busca) + '">' +
+        '<div class="ajc-pick-lista" data-testid="pick-lista">' + htmlPickLista() + '</div>';
+    }
+    function apSheetEl() { return $('[data-sheet]'); }
+    function apRenderLanc(opts) {
+      opts = opts || {};
+      var sh = $('[data-sheet="lanc"] .ajc-sheet'); if (!sh) return;
+      var topo = sh.scrollTop, tela = sh.getAttribute('data-tela');
+      sh.innerHTML = AP.F.tela === 'form' ? htmlLancForm() : htmlLancPick();
+      sh.setAttribute('data-tela', AP.F.tela);
+      sh.scrollTop = tela === AP.F.tela && !opts.topo ? topo : 0;
+      if (opts.foco) { var el = $(opts.foco, sh); if (el) { try { el.focus(); } catch (e) { /* ignora */ } } }
+    }
+    function apAbrirSheet(nome, htmlInterno, tela) {
+      ultimoFoco = document.activeElement;
+      var tv = $('.ajc-toast'); if (tv && tv.parentNode) tv.parentNode.removeChild(tv);   // aviso antigo não cobre a folha
+      AP.sheet = nome;
+      var f = document.createElement('div');
+      f.className = 'ajc-sheet-fundo'; f.setAttribute('data-sheet', nome);
+      f.innerHTML = '<div class="ajc-sheet' + (nome === 'lanc' ? ' ajc-sheet-lanc' : '') + '" role="dialog" aria-modal="true" aria-labelledby="ajc-sheet-t" tabindex="-1" data-testid="' + (nome === 'lanc' ? 'folha-lanc' : 'folha-apoio') + '"' + (tela ? ' data-tela="' + tela + '"' : '') + '>' + htmlInterno + '</div>';
+      rootEl.appendChild(f);
+      try {
+        if (root.visualViewport) {          // teclado aberto: a folha acompanha a área visível
+          apViewportFn = function () { var vv = root.visualViewport; f.style.height = vv.height + 'px'; f.style.top = vv.offsetTop + 'px'; f.style.bottom = 'auto'; };
+          root.visualViewport.addEventListener('resize', apViewportFn);
+          root.visualViewport.addEventListener('scroll', apViewportFn);
+        }
+      } catch (e) { apViewportFn = null; }
+      $('.ajc-sheet', f).focus();
+    }
+    function apFecharSheet() {
+      var f = apSheetEl();
+      if (f && f.parentNode) f.parentNode.removeChild(f);
+      try { if (apViewportFn && root.visualViewport) { root.visualViewport.removeEventListener('resize', apViewportFn); root.visualViewport.removeEventListener('scroll', apViewportFn); } } catch (e) { /* ignora */ }
+      apViewportFn = null;
+      AP.sheet = null; AP.F = null;
+      var b = $('[data-testid="apoio-lancar"]');
+      if (ultimoFoco && ultimoFoco.focus && document.body.contains(ultimoFoco)) ultimoFoco.focus(); else if (b && !b.disabled) b.focus();
+    }
+    function apNovo(orig) {
+      if (AP.sheet || apBloqueioEdicao() || !AP.dados) return;
+      AP.F = novaForm(orig);
+      AP.F.tela = orig ? 'form' : 'p-promotor';
+      apAbrirSheet('lanc', AP.F.tela === 'form' ? htmlLancForm() : htmlLancPick(), AP.F.tela);
+    }
+    function apLerCampos() {
+      var sh = $('[data-sheet="lanc"] .ajc-sheet'); if (!sh || !AP.F) return;
+      var v = $('.ajc-valor-in', sh), d = $('.ajc-data-in', sh);
+      if (v) AP.F.valor = v.value;
+      if (d) AP.F.data = d.value;
+    }
+    function apAbrirPick(qual) {
+      apLerCampos();
+      AP.F.tela = 'p-' + qual; AP.F.busca = '';
+      apRenderLanc({ topo: true, foco: qual === 'de' || qual === 'para' ? '.ajc-pick-busca' : null });
+    }
+    function apEscolher(valor) {
+      var f = AP.F, t = f.tela, proximo = null;
+      if (t === 'p-promotor') { f.setor = valor; delete f.erros.setor; if (f.cobre_setor === valor) f.cobre_setor = ''; }
+      else if (t === 'p-cobre') { f.cobre_setor = valor; delete f.erros.cobre_setor; }
+      else if (t === 'p-de') { f.de = valor; delete f.erros.de; delete f.erros.para; f.dup = ''; if (!f.para) proximo = 'para'; }
+      else if (t === 'p-para') { f.para = valor; delete f.erros.para; f.dup = ''; }
+      if (t === 'p-de' || t === 'p-para') fAplicarSugestao();
+      f.dup = '';
+      if (proximo) { f.tela = 'p-' + proximo; f.busca = ''; apRenderLanc({ topo: true, foco: '.ajc-pick-busca' }); return; }
+      f.tela = 'form';
+      apRenderLanc({ topo: true, foco: t === 'p-para' || (t === 'p-de' && f.para) ? '.ajc-valor-in' : null });
+    }
+    function apMotivo(m) {
+      apLerCampos();
+      var f = AP.F, mudou = f.motivo !== m;
+      f.motivo = m; delete f.erros.motivo; f.dup = '';
+      if (m !== 'COBERTURA') { f.cobre_setor = ''; delete f.erros.cobre_setor; }
+      if (m === 'COBERTURA' && mudou && !f.cobre_setor) { f.tela = 'p-cobre'; f.busca = ''; apRenderLanc({ topo: true }); return; }   // avança sozinho para o setor coberto
+      apRenderLanc();
+    }
+    function apAtualizarValorExtras() {
+      var sh = $('[data-sheet="lanc"] .ajc-sheet'); if (!sh || AP.F.tela !== 'form') return;
+      var ex = htmlValorExtras(), l = $('[data-testid="lanc-sugerido"]', sh), a = $('[data-testid="lanc-aviso"]', sh);
+      if (l) l.textContent = ex.leg;
+      if (a) a.textContent = ex.aviso;
+    }
+    function apMostrarErros(erros) {
+      var sh = $('[data-sheet="lanc"] .ajc-sheet'); if (!sh) return;
+      $$('[data-erro]', sh).forEach(function (el) { var m = erros[el.getAttribute('data-erro')]; el.textContent = m || ''; });
+      var primeiro = null;
+      ['setor', 'motivo', 'cobre_setor', 'data', 'de', 'para', 'valor'].forEach(function (c) { if (!primeiro && erros[c]) primeiro = $('[data-erro="' + c + '"]', sh); });
+      if (primeiro && primeiro.scrollIntoView) { try { primeiro.scrollIntoView({ block: 'center' }); } catch (e) { /* ignora */ } }
+    }
+    function apSalvar() {
+      if (!AP.F || AP.F.tela !== 'form') return;
+      apLerCampos();
+      var f = AP.F, n = AJC.parseValorApoio(f.valor), l = { data: f.data, setor: f.setor, motivo: f.motivo, cobre_setor: f.motivo === 'COBERTURA' ? f.cobre_setor : '', de: f.de, para: f.para, valor: n.ok ? n.valor : f.valor };
+      var v = AJC.validarLancamentoApoio(l, apCtx());
+      f.erros = v.erros; f.dup = '';
+      if (!v.ok) { apMostrarErros(v.erros); return; }
+      var k = AJC.chaveApoio(l), origK = f.orig ? AJC.chaveApoio(f.orig) : '', dup = apEfetivoPorChave(k);
+      if (dup && k !== origK) {                                   // duplicata local: bloqueia e oferece editar o existente
+        f.dup = k; apRenderLanc();
+        var d = $('[data-testid="lanc-dup"]'); if (d && d.scrollIntoView) d.scrollIntoView({ block: 'center' });
+        return;
+      }
+      var r = { local: Object.assign({}, AP.rasc.local), remover: Object.assign({}, AP.rasc.remover) };
+      if (f.orig) {
+        if (f.orig.apoio_id) { if (k !== origK) { r.remover[f.orig.apoio_id] = true; delete r.local[origK]; } }
+        else delete r.local[origK];
+      }
+      r.local[k] = l;
+      AP.rasc = r;
+      apPersistir();
+      var editou = !!f.orig;
+      apFecharSheet();
+      apRender(); atualizarAbas();
+      toast(editou ? 'Alteração salva neste aparelho' : 'Lançamento salvo neste aparelho');
+    }
+    function apRemover(k) {
+      var e = apEfetivoPorChave(k); if (!e) return;
+      var r = { local: Object.assign({}, AP.rasc.local), remover: Object.assign({}, AP.rasc.remover) };
+      delete r.local[k];
+      if (e.apoio_id) r.remover[e.apoio_id] = true;
+      AP.rasc = r; AP.removendo = '';
+      apPersistir(); apRender(); atualizarAbas();
+      toast('Removido. Falta transmitir.');
+    }
+
+    /* ---------- folha: transmitir ---------- */
+    var AP_MOTIVOS = { VALOR_INVALIDO: 'valor inválido', DATA_INVALIDA: 'data inválida', DATA_FORA_DO_MES: 'data fora do mês aberto', DATA_FUTURA: 'data no futuro', SETOR_INVALIDO: 'setor fora da sua lista',
+      MOTIVO_INVALIDO: 'motivo inválido', COBRE_SETOR_INVALIDO: 'setor coberto inválido', COBRE_SETOR_IGUAL: 'setor coberto igual ao promotor', LOJA_INVALIDA: 'loja não encontrada — atualize a tela',
+      DE_IGUAL_PARA: 'de e para iguais', DUPLICADO: 'repetido', ITEM_INVALIDO: 'item inválido', APOIO_INVALIDO: 'lançamento não encontrado — atualize a tela',
+      APOIO_DE_OUTRO: 'lançamento de outra pessoa — atualize a tela', MES_DIFERENTE: 'lançamento de outro mês', REMOVER_E_LANCAR: 'removido e lançado juntos' };
+    function apSemNovaTentativa() {
+      var c = AP.erroInfo && AP.erroInfo.codigo;
+      return c === 'ITENS_INVALIDOS' || c === 'MES_FECHADO' || c === 'SEM_MES_ABERTO' || c === 'ACESSO_NEGADO' || c === 'BLOQUEADO';
+    }
+    /* erros do servidor: { campo:'itens'|'remover', i, motivo } — i é o índice dentro de payload.itens ou payload.remover */
+    function apDescreverErro(x) {
+      var p = AP.enviado, it = null, id = null, s = null;
+      if (p && x && typeof x.i === 'number') { if (x.campo === 'remover') id = p.remover[x.i]; else it = p.itens[x.i]; }
+      if (it) return esc(it.setor) + ' · ' + esc(ddmm(it.data)) + ' · ' + esc(apNomeLoja(it.de)) + ' → ' + esc(apNomeLoja(it.para));
+      if (!id && x && x.apoio_id) id = x.apoio_id;
+      if (id && AP.dados) AP.dados.lancamentos.forEach(function (l) { if (l.apoio_id === id) s = l; });
+      if (s) return 'Remover ' + esc(s.setor) + ' · ' + esc(ddmm(s.data)) + ' · ' + esc(apNomeLoja(s.de)) + ' → ' + esc(apNomeLoja(s.para));
+      return 'Um lançamento';
+    }
+    function htmlErroApoio() {
+      if (!AP.erroEnvio) return '';
+      var ei = AP.erroInfo || {};
+      if (ei.codigo === 'ITENS_INVALIDOS') {
+        var lista = (ei.erros || []).slice(0, 5).map(function (x) { return '<li>' + apDescreverErro(x) + ': ' + esc(AP_MOTIVOS[x && x.motivo] || 'recusado') + '</li>'; }).join('');
+        var total = Number(ei.totalErros) || (ei.erros || []).length, resto = total - Math.min(5, (ei.erros || []).length);
+        return '<div class="ajc-erro" role="alert" data-testid="erro-envio-apoio"><div>O servidor recusou alguns lançamentos</div>' + (lista ? '<ul class="ajc-erro-lista">' + lista + '</ul>' : '') +
+          (resto > 0 ? '<div class="ajc-erro-mais">e mais ' + resto + '</div>' : '') + '<div class="ajc-erro-salvo">Nada foi enviado. ' + SALVOS + '</div></div>';
+      }
+      var msg = ei.codigo && ei.msg ? ei.msg + ' ' + SALVOS : 'Não enviou. ' + SALVOS;
+      return '<div class="ajc-erro" role="alert" data-testid="erro-envio-apoio">' + esc(msg) + '</div>';
+    }
+    function htmlEnvioApoio() {
+      var d = apDiff(), partes = [];
+      if (d.novos) partes.push(plural(d.novos, 'novo', 'novos'));
+      if (d.editados) partes.push(plural(d.editados, 'editado', 'editados'));
+      if (d.removidos) partes.push(plural(d.removidos, 'removido', 'removidos'));
+      return '<h2 class="ajc-sheet-titulo" id="ajc-sheet-t">Transmitir ' + plural(d.total, 'lançamento', 'lançamentos') + '?</h2>' +
+        '<p class="ajc-sheet-texto" data-testid="envio-resumo">' + esc(partes.join(' · ')) + '. Só o que mudou é enviado.</p>' + htmlErroApoio() +
+        (AP.erroEnvio && apSemNovaTentativa() ? '' :
+          '<button type="button" class="ajc-btn-primario" data-act="ap-confirmar-envio" data-testid="apoio-confirmar-envio"' + (AP.enviando ? ' disabled' : '') + '>' + (AP.enviando ? 'Enviando…' : AP.erroEnvio ? 'Tentar de novo' : 'Transmitir agora') + '</button>') +
+        '<button type="button" class="ajc-btn-sec" data-act="ap-cancelar-envio" data-testid="apoio-cancelar-envio"' + (AP.enviando ? ' disabled' : '') + '>Voltar</button>';
+    }
+    function apAtualizarEnvio() {
+      var sh = $('[data-sheet="envio"] .ajc-sheet'); if (!sh) return;
+      sh.innerHTML = htmlEnvioApoio();
+      var p = $('.ajc-btn-primario', sh);
+      if (AP.enviando || !p) sh.focus(); else p.focus();
+    }
+    function apAbrirEnvio() {
+      if (AP.sheet || AP.enviando || AP.fechado || AP.bloqueado || !AP.dados || !apDiff().total) return;
+      apAjustarLote();
+      AP.erroEnvio = false; AP.erroInfo = null;
+      apAbrirSheet('envio', htmlEnvioApoio());
+    }
+    function apFecharEnvio() {
+      if (AP.enviando) return;
+      AP.erroEnvio = false; AP.erroInfo = null;
+      apFecharSheet();
+    }
+    /* Mesma regra de lote do VT: o servidor recusa o mesmo lote com conteúdo diferente (LOTE_REUTILIZADO). Se o conteúdo
+       difere da última tentativa que FALHOU, o lote é novo; se for igual, reutiliza (retentativa idempotente). */
+    function apAjustarLote() {
+      if (!AP.assin) return;
+      var atual = AJC.assinaturaApoio(AJC.montarPayloadApoio(AP.dados.mes.id, apCoord(), apDiff(), ''));
+      if (atual !== AP.assin) { AP.lote = AJC.novoLote(); AP.assin = null; apPersistir(); }
+    }
+    function apTransmitir() {
+      if (AP.enviando || destruido || !AP.dados) return;
+      apAjustarLote();
+      var diff = apDiff();
+      if (!diff.total) return;
+      var payload = AJC.montarPayloadApoio(AP.dados.mes.id, apCoord(), diff, AP.lote), assin = AJC.assinaturaApoio(payload);
+      AP.enviado = payload; AP.enviando = true; AP.erroEnvio = false; AP.erroInfo = null;
+      apAtualizarEnvio();
+      var p;
+      try { p = Promise.resolve(fonte.transmitirApoio(payload)); } catch (e) { p = Promise.reject(e); }
+      p.then(function (res) {
+        if (res && res.ok === false) throw new Error('recusado');
+        if (destruido) return;
+        var otimista = apEfetivos().map(function (e) { return { apoio_id: e.apoio_id || '', data: e.data, setor: e.setor, motivo: e.motivo, cobre_setor: e.cobre_setor || '', de: e.de, para: e.para, valor: e.valor, versao: e.versao || 1 }; });
+        AP.dados.lancamentos = otimista;
+        AP.rasc = { local: {}, remover: {} }; AP.lote = AJC.novoLote(); AP.assin = null; AP.enviando = false; AP.bloqueado = true;
+        apPersistir();
+        apFecharSheet();
+        apRender(); atualizarAbas();
+        toast('Enviado ✓ às ' + hhmm(Date.now()));
+        apCarregar();                                  // traz os apoio_id reais; se falhar, a aba avisa e pede ↻
+      }).catch(function (err) {
+        if (destruido) return;
+        AP.enviando = false; AP.erroEnvio = true;
+        AP.erroInfo = err && err.codigo ? { codigo: err.codigo, msg: err.message, erros: err.erros, totalErros: err.totalErros } : null;
+        if (err && err.codigo === 'LOTE_REUTILIZADO') { AP.lote = AJC.novoLote(); AP.assin = null; }
+        else AP.assin = assin;
+        apPersistir();
+        apAtualizarEnvio();
+        if (err && err.codigo === 'MES_FECHADO') { AP.fechado = true; AP.dados.mes.status = 'FECHADO'; apRender(); }
+        else if (err && err.codigo === 'SEM_MES_ABERTO') { AP.estado = 'sem_mes'; AP.fechado = true; apRender(); }
+        if (ehAcesso(err)) acessoNegado(err);
+      });
+    }
+
+    /* ---------- eventos do Apoio ---------- */
+    function apClick(act, b) {
+      if (act === 'aba') {
+        var alvo = b.getAttribute('data-aba');
+        if (alvo === S.aba) return;
+        S.aba = alvo; S.completo = false;
+        render({ topo: true });
+        if (alvo === 'apoio' && (AP.estado === 'nada' || AP.estado === 'erro')) apCarregar();
+        var nb = $('[data-testid="aba-' + alvo + '"]'); if (nb) nb.focus();
+      } else if (act === 'ap-atualizar') { apCarregar();
+      } else if (act === 'ap-novo') { apNovo(null);
+      } else if (act === 'ap-editar') { var e = apEfetivoPorChave(b.getAttribute('data-ap')); if (e) apNovo(e);
+      } else if (act === 'ap-remover') { AP.removendo = b.getAttribute('data-ap'); apRender();
+      } else if (act === 'ap-remover-nao') { AP.removendo = ''; apRender();
+      } else if (act === 'ap-remover-sim') { apRemover(b.getAttribute('data-ap'));
+      } else if (act === 'ap-transmitir') { apAbrirEnvio();
+      } else if (act === 'ap-confirmar-envio') { apTransmitir();
+      } else if (act === 'ap-cancelar-envio') { apFecharEnvio();
+      } else if (act === 'ap-cancelar') { apFecharSheet();
+      } else if (act === 'ap-pick') { apAbrirPick(b.getAttribute('data-qual'));
+      } else if (act === 'ap-pick-voltar') { AP.F.tela = 'form'; apRenderLanc({ topo: true });
+      } else if (act === 'ap-escolher') { apEscolher(b.getAttribute('data-valor'));
+      } else if (act === 'ap-motivo') { apMotivo(b.getAttribute('data-motivo'));
+      } else if (act === 'ap-data') {
+        AP.F.data = b.getAttribute('data-data'); delete AP.F.erros.data; AP.F.dup = '';
+        var di = $('.ajc-data-in'); if (di) di.value = AP.F.data;
+        var de = $('[data-erro="data"]'); if (de) de.textContent = '';
+      } else if (act === 'ap-editar-dup') {
+        var dup = apEfetivoPorChave(AP.F.dup);
+        if (dup) { AP.F = novaForm(dup); apRenderLanc({ topo: true }); }
+      } else if (act === 'ap-salvar') { apSalvar(); }
+    }
+    function apInput(i) {
+      if (i.classList.contains('ajc-pick-busca')) {
+        AP.F.busca = i.value;
+        var L = $('.ajc-pick-lista'); if (L) L.innerHTML = htmlPickLista();
+      } else if (i.classList.contains('ajc-valor-in')) {
+        AP.F.valor = i.value; AP.F.tocado = true; delete AP.F.erros.valor;
+        var er = $('[data-erro="valor"]'); if (er) er.textContent = '';
+        apAtualizarValorExtras();
+      } else if (i.classList.contains('ajc-data-in')) {
+        AP.F.data = i.value; delete AP.F.erros.data; AP.F.dup = '';
+        var ed = $('[data-erro="data"]'); if (ed) ed.textContent = '';
+      }
+    }
+    function apFocusOut(i) {
+      if (i.classList.contains('ajc-valor-in') && AP.F) {          // "12,5" vira "12,50" ao sair do campo
+        var n = AJC.parseValorApoio(i.value);
+        if (n.ok) { i.value = AJC.fmtBRL(n.valor); AP.F.valor = i.value; apAtualizarValorExtras(); }
+      }
+    }
+    function apTeclas(ev) {
+      var i = ev.target;
+      if (ev.key === 'Escape') {
+        ev.preventDefault();
+        if (AP.sheet === 'envio') apFecharEnvio();
+        else if (AP.F && AP.F.tela !== 'form') { AP.F.tela = 'form'; apRenderLanc({ topo: true }); }
+        else apFecharSheet();
+        return true;
+      }
+      if (ev.key === 'Tab') {
+        var fundo = apSheetEl(), bs = fundo ? $$('button:not([disabled]), input:not([disabled])', fundo) : [];
+        if (!bs.length) { ev.preventDefault(); return true; }
+        var first = bs[0], last = bs[bs.length - 1], sh = $('.ajc-sheet', fundo);
+        if (ev.shiftKey && (document.activeElement === first || document.activeElement === sh)) { ev.preventDefault(); last.focus(); }
+        else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+        return true;
+      }
+      if (ev.key === 'Enter' && i.classList) {
+        if (i.classList.contains('ajc-valor-in')) { ev.preventDefault(); apFocusOut(i); apSalvar(); return true; }
+        if (i.classList.contains('ajc-pick-busca')) { ev.preventDefault(); i.blur(); return true; }
+      }
+      return false;
+    }
+
     /* ---------- eventos ---------- */
     function onClick(ev) {
       var b = ev.target.closest ? ev.target.closest('[data-act]') : null;
       if (!b || !rootEl.contains(b) || b.disabled) return;
       var act = b.getAttribute('data-act');
+      if (act === 'aba' || act.indexOf('ap-') === 0) { apClick(act, b); return; }
       if (act === 'abrir') {
         S.setorAtual = b.getAttribute('data-setor'); S.view = 'setor'; S.completo = false;
         render({ topo: true });
@@ -2102,10 +2962,15 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
       }
     }
     function onFundo(ev) {
+      if (ev.target.classList && ev.target.classList.contains('ajc-sheet-fundo') && ev.target.hasAttribute('data-sheet')) {
+        if (AP.sheet === 'envio') apFecharEnvio();          // o lançamento em edição não fecha por toque fora (evita perder o que foi digitado)
+        return;
+      }
       if (ev.target.classList && ev.target.classList.contains('ajc-sheet-fundo')) fecharFolha();
     }
     function onInput(ev) {
       var i = ev.target;
+      if (AP.sheet && i.classList && (i.classList.contains('ajc-pick-busca') || i.classList.contains('ajc-valor-in') || i.classList.contains('ajc-data-in'))) { apInput(i); return; }
       if (i.classList && i.classList.contains('ajc-busca')) {
         S.busca = i.value;
         var L = $('.ajc-lista'); if (L) L.innerHTML = htmlItens();
@@ -2115,13 +2980,19 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
       var el = acharTrecho(i.getAttribute('data-id')), m = el && $('.ajc-msg', el);
       if (m) m.parentNode.removeChild(m);
     }
+    function onChange(ev) {                                // só o campo de data do Apoio (o VT não usa 'change')
+      var i = ev.target;
+      if (AP.sheet && i.classList && i.classList.contains('ajc-data-in')) apInput(i);
+    }
     function onFocusOut(ev) {
       var i = ev.target;
+      if (i.classList && i.classList.contains('ajc-valor-in') && !destruido) { apFocusOut(i); return; }
       if (!i.classList || !i.classList.contains('ajc-input') || destruido) return;
       salvarCampo(i, false);
     }
     function onKeydown(ev) {
       var i = ev.target;
+      if (AP.sheet && apTeclas(ev)) return;
       if (ev.key === 'Escape' && S.folha) { if (!S.enviando) { ev.preventDefault(); fecharFolha(); } return; }
       if (ev.key === 'Tab' && S.folha) {                 // mantém o foco dentro da folha
         var bs = $$('.ajc-sheet button:not([disabled])');
@@ -2141,6 +3012,7 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
     rootEl.addEventListener('click', onClick);
     rootEl.addEventListener('click', onFundo);
     rootEl.addEventListener('input', onInput);
+    rootEl.addEventListener('change', onChange);
     rootEl.addEventListener('focusout', onFocusOut);
     rootEl.addEventListener('keydown', onKeydown);
 
@@ -2151,6 +3023,8 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
       rootEl.removeEventListener('click', onClick);
       rootEl.removeEventListener('click', onFundo);
       rootEl.removeEventListener('input', onInput);
+      rootEl.removeEventListener('change', onChange);
+      try { if (apViewportFn && root.visualViewport) { root.visualViewport.removeEventListener('resize', apViewportFn); root.visualViewport.removeEventListener('scroll', apViewportFn); } } catch (e) { /* ignora */ }
       rootEl.removeEventListener('focusout', onFocusOut);
       rootEl.removeEventListener('keydown', onKeydown);
       if (rootEl.parentNode) rootEl.parentNode.removeChild(rootEl);
@@ -2169,7 +3043,7 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
 /* ajc_rota86.js — cola entre o app ROTA 86 e a tela de VT por trecho (módulo app-web/ajc/).
    Só entra no app quando a flag está ligada no build (ver LEIA-ME.md). Depende de window.AJC (ajc_logica.js),
    window.AJC_FONTE_HTTP (fonte_http.js), window.AJC_UI (ajc_ui.js) e window.AJC_CONFIG ({ativo, endpoint}).
-   Expõe window.ROTA86_AJC = { cardPerfil(acesso), abrir(raiz), limparAcesso() }.
+   Expõe window.ROTA86_AJC = { cardPerfil(acesso), abrir(raiz, acessoApp), limparAcesso() }.
    Nunca lança para o app: qualquer falha vira um aviso dentro da própria tela de VT. */
 (function (root) {
   'use strict';
@@ -2275,7 +3149,7 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
         iCod.value = ''; iCod.focus();
       });
     });
-    if (focar) (setor ? iCod : iSetor).focus();
+    if (focar) { try { (setor ? iCod : iSetor).focus({ preventScroll: true }); } catch (e) { /* sem foco */ } }
   }
 
   /* Carrega uma vez para validar o acesso; se der certo, guarda e monta a tela já com esses dados. */
@@ -2286,24 +3160,33 @@ window.AJC_CONFIG={"ativo": true, "endpoint": "https://script.google.com/macros/
       var primeiro = true;
       var envolta = {
         carregar: function () { if (primeiro) { primeiro = false; return Promise.resolve(dados); } return fonte.carregar(); },
-        transmitir: function (p) { return fonte.transmitir(p); }
+        transmitir: function (p) { return fonte.transmitir(p); },
+        carregarApoio: function () { return fonte.carregarApoio(); },
+        transmitirApoio: function (p) { return fonte.transmitirApoio(p); },
+        coordenador: coord
       };
       soltarUI();
       ui = montarUI(envolta);
     });
   }
 
-  function abrir(el) {
+  /* Conveniência de UI, nunca autorização: pré-preenche o setor com o do login do ROTA 86 (só coordenador).
+     O campo continua editável e o servidor valida setor + código de qualquer jeito. */
+  function setorSugerido(a) {
+    return a && PERFIS[a.perfil] && typeof a.setor === 'string' ? a.setor.trim() : '';
+  }
+
+  function abrir(el, acessoApp) {
     if (!ligado) return;
     if (raiz === el && (ui || el.firstChild)) return;      // já montada: preserva o estado (rascunho, fila) ao voltar do Perfil
     raiz = el;
     var ac = lerAcesso();
-    if (!ac) { mostrarEntrada('', '', false); return; }
+    if (!ac) { mostrarEntrada('', setorSugerido(acessoApp), true); return; }
     raiz.textContent = 'Carregando…';
     conectar(ac.coordenador, ac.codigo).catch(function (err) {
       var c = err && err.codigo;
-      if (c === 'ACESSO_NEGADO') { apagarAcesso(); mostrarEntrada(err.message, ac.coordenador, false); }
-      else if (c === 'BLOQUEADO' || c === 'SEM_QUINZENA_ABERTA') mostrarEntrada(err.message, ac.coordenador, false);
+      if (c === 'ACESSO_NEGADO') { apagarAcesso(); mostrarEntrada(err.message, ac.coordenador, true); }
+      else if (c === 'BLOQUEADO' || c === 'SEM_QUINZENA_ABERTA') mostrarEntrada(err.message, ac.coordenador, true);
       else {                                   // sem rede etc.: abre a tela, que mostra o erro e oferece "Tentar de novo"
         ui = montarUI(root.AJC_FONTE_HTTP.criar({ url: ENDPOINT, coordenador: ac.coordenador, codigo: ac.codigo }));
       }
@@ -3134,7 +4017,7 @@ function irPara(v, opts){
   const R = {
     hoje: renderHoje, direcionamentos: renderDirecionamentos, pontuacao: renderPontuacao,
     equipe: renderEquipe, redes: renderRedes, lojas: renderLojas, mop: renderMop, calculadora: renderCalculadoraSos, operacao: renderOperacao,
-    perfil: renderPerfil, fechamentos: renderFechamentos, faq: renderFaq, canal: renderCanalDash, vt: () => window.ROTA86_AJC.abrir($('ajcRaiz')),
+    perfil: renderPerfil, fechamentos: renderFechamentos, faq: renderFaq, canal: renderCanalDash, vt: () => window.ROTA86_AJC.abrir($('ajcRaiz'), ACESSO),
     loja: () => renderLoja(rotaAtual.loja)
   };
   atualizarAppBar(v);
